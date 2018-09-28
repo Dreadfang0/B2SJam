@@ -7,13 +7,13 @@ public class LootBoxController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Can hit detection be done this way?
-        var other = collision.otherCollider.gameObject;
+        var other = collision.otherCollider.gameObject.GetComponent<PlayerAttributes>();
 
-        if (other is object)
+        if (other != null)
             OnPickup(other);
     }
 
-    private void OnPickup(object player)
+    private void OnPickup(PlayerAttributes player)
     {
         EffectState.instance.Trigger(player);
 

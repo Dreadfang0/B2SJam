@@ -54,7 +54,7 @@ public class EffectState : MonoBehaviour
     //    effectListeners[type].Add(listener);
     //}
 
-    public void Trigger(EffectType type, object player = null)
+    public void Trigger(EffectType type, PlayerAttributes player = null)
     {
         var effect = EffectFactory.Create(type);
 
@@ -69,7 +69,7 @@ public class EffectState : MonoBehaviour
     }
 
     // Trigger a random effect
-    public void Trigger(object player = null)
+    public void Trigger(PlayerAttributes player = null)
     {
         Trigger((EffectType)Random.Range(0, (int)(EffectType.__Count)), player);
     }

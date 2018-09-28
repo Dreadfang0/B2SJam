@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class LevelGen : MonoBehaviour {
     public GameObject[] tiles;
-    public float scrollSpeed = 1f;
     public float spawnAhead = 500f;
     List<GameObject> spawnedTiles;
     public GameObject startTile;
     GameObject lastTile;
+    Camera mainCamera;
 	// Use this for initialization
 	void Awake () {
+        mainCamera = Camera.main;
         spawnedTiles = new List<GameObject>();
         spawnedTiles.Add(startTile);
         lastTile = startTile;
@@ -22,9 +23,8 @@ public class LevelGen : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-        transform.position += Vector3.up * Time.deltaTime * scrollSpeed;
         //if distance from last spawned is smaller than spawnAhead, spawn new block
-        if (lastTile.transform.position.y - transform.position.y < spawnAhead) 
+        if (lastTile.transform.position.y - mainCamera.transform.position.y < spawnAhead) 
         {
             SpawnTile();
         }
@@ -42,7 +42,7 @@ public class LevelGen : MonoBehaviour {
     }
     void CheckForTrash() {
         //check from oldest until not far enough for destruction
-        while (spawnedTiles[0].transform.position.y < transform.position.y -spawnAhead)
+        while (spawnedTiles[0].transform.position.y < mainCamera.transform.position.y -spawnAhead)
         {
             GameObject oldestTile = spawnedTiles[0];
             spawnedTiles.Remove(oldestTile);

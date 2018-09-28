@@ -12,11 +12,18 @@ public class Player2Controller : MonoBehaviour
     public bool grounded;
     public Rigidbody2D rig;
     public Collider2D feetTrigger;
+    
+    // Gun ability stuff
     public Transform gunpoint;
     public GameObject bullet;
-
-    int gunCoolingdown;
-    public int gunCooldown;
+    
+    // Ability Cooldowns
+    float lootboxstormCoolingdown;
+    public float lootboxstormCooldown;
+    float dlcCoolingdown;
+    public float dlcCooldown;
+    float gunCoolingdown;
+    public float gunCooldown;
 
 	// Use this for initialization
 	void Start ()
