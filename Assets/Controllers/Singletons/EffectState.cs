@@ -54,7 +54,7 @@ public class EffectState : MonoBehaviour
     //    effectListeners[type].Add(listener);
     //}
 
-    public void Trigger(EffectType type)
+    public void Trigger(EffectType type, object player = null)
     {
         var effect = EffectFactory.Create(type);
 
@@ -63,14 +63,14 @@ public class EffectState : MonoBehaviour
         //foreach (var listener in effectListeners[type])
         //    listener.Begin(effect);
 
-        effect.Begin();
+        effect.Begin(player);
 
         activeEffects[type].Add(effect);
     }
 
     // Trigger a random effect
-    public void Trigger()
+    public void Trigger(object player = null)
     {
-        Trigger((EffectType)Random.Range(0, (int)(EffectType.__Count)));
+        Trigger((EffectType)Random.Range(0, (int)(EffectType.__Count)), player);
     }
 }

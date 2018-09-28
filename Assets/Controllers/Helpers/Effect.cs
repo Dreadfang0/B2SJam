@@ -6,7 +6,7 @@ public abstract class Effect
 {
     public abstract bool HasEnded();
 
-    public virtual void Begin() { }
+    public virtual void Begin(object player) { }
 
     public virtual void End() { }
 
