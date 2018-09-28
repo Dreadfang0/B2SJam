@@ -6,7 +6,7 @@ public class TestEffect : Effect
 {
     private float timer = 0;
 
-    public override bool Ended()
+    public override bool HasEnded()
     {
         return timer >= 3f;
     }

@@ -8,7 +8,7 @@ public class EffectState : MonoBehaviour
 
     private float currentIntensity = 0f;
     private Dictionary<EffectType, List<Effect>> activeEffects = new Dictionary<EffectType, List<Effect>>();
-    private Dictionary<EffectType, List<EffectListener>> effectListeners = new Dictionary<EffectType, List<EffectListener>>();
+    // private Dictionary<EffectType, List<EffectListener>> effectListeners = new Dictionary<EffectType, List<EffectListener>>();
     
 	void Awake()
     {
@@ -26,14 +26,16 @@ public class EffectState : MonoBehaviour
             {
                 effect.Update();
 
-                if (effect.Ended())
+                if (effect.HasEnded())
                 {
-                    foreach (var listener in effectListeners[list.Key])
-                        listener.End(effect);
+                    effect.End();
+
+                    //foreach (var listener in effectListeners[list.Key])
+                    //    listener.End(effect);
                 }
             }
 
-            list.Value.RemoveAll(effect => effect.Ended());
+            list.Value.RemoveAll(effect => effect.HasEnded());
         }
     }
 
@@ -47,10 +49,10 @@ public class EffectState : MonoBehaviour
         currentIntensity = Mathf.Max(currentIntensity + by, 1f);
     }
 
-    public void AddListener(EffectType type, EffectListener listener)
-    {
-        effectListeners[type].Add(listener);
-    }
+    //public void AddListener(EffectType type, EffectListener listener)
+    //{
+    //    effectListeners[type].Add(listener);
+    //}
 
     public void Trigger(EffectType type)
     {
@@ -58,8 +60,10 @@ public class EffectState : MonoBehaviour
 
         Debug.Assert(effect != null, "EffectFactory returned null with type " + type);
 
-        foreach (var listener in effectListeners[type])
-            listener.Begin(effect);
+        //foreach (var listener in effectListeners[type])
+        //    listener.Begin(effect);
+
+        effect.Begin();
 
         activeEffects[type].Add(effect);
     }
