@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player2Controller : MonoBehaviour
+public class Player2Controller : BasePlayerController
 {
     public float PowerMultiplier;
     public float speed;
     public float maxSpeed;
     public float jumpforce;
-    public int Health;
     public bool grounded;
     public Rigidbody2D rig;
     public Collider2D feetTrigger;
@@ -30,9 +29,16 @@ public class Player2Controller : MonoBehaviour
     {
         
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    public override void Damage(int amount = 1)
+    {
+        base.Damage(amount);
+
+        // Play pain sounds & trigger screen effects etc.
+    }
+
+    // Update is called once per frame
+    void FixedUpdate ()
     {
         
         if (rig.velocity.magnitude > maxSpeed)
