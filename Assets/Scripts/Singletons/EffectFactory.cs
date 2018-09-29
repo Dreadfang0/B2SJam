@@ -8,6 +8,7 @@ public enum EffectType
     Cooldown,
     Freeze,
     Throw,
+    Explosion,
 
     // Env
 
@@ -30,6 +31,9 @@ public class EffectFactory
 
             case EffectType.Throw:
                 return new ThrowEffect();
+
+            case EffectType.Explosion:
+                return new ExplosionEffect();
 
             default:
                 return null;

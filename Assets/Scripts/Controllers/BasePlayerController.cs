@@ -11,6 +11,17 @@ public abstract class BasePlayerController : MonoBehaviour
 
     private bool frozen = false;
 
+    public BasePlayerController FindOpponent()
+    {
+        foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (player != gameObject)
+                return player.GetComponent<BasePlayerController>();
+        }
+
+        return null;
+    }
+
     public virtual int Health
     {
         get { return health; }
