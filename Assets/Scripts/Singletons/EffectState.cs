@@ -6,6 +6,9 @@ public class EffectState : MonoBehaviour
 {
     public static EffectState instance;
 
+    // Effect test override (set to __Count to disable)
+    public EffectType effectTypeOverride = EffectType.__Count;
+
     private float currentIntensity = 0.1f;
     private Dictionary<EffectType, List<Effect>> activeEffects = new Dictionary<EffectType, List<Effect>>();
     // private Dictionary<EffectType, List<EffectListener>> effectListeners = new Dictionary<EffectType, List<EffectListener>>();
@@ -71,6 +74,11 @@ public class EffectState : MonoBehaviour
     // Trigger a random effect
     public void Trigger(BasePlayerController player = null)
     {
-        Trigger((EffectType)Random.Range(0, (int)(EffectType.__Count)), player);
+        Trigger(
+            effectTypeOverride != EffectType.__Count ?
+                effectTypeOverride :
+                (EffectType)Random.Range(0, (int)(EffectType.__Count)),
+            player
+        );
     }
 }
