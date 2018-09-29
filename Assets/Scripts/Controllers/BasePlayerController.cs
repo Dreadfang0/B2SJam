@@ -26,6 +26,7 @@ public abstract class BasePlayerController : MonoBehaviour
 
     private float[] cooldowns = new float[3];
     private bool frozen = false;
+    private float movementScale = 1f;
     protected bool facingRight = false;
 
     public BasePlayerController FindOpponent()
@@ -72,9 +73,11 @@ public abstract class BasePlayerController : MonoBehaviour
 
         // Horizontal damping
         rig.velocity = new Vector2(
-            rig.velocity.x * (1f - horizontalDamping * Time.deltaTime),
+            rig.velocity.x * (1f - horizontalDamping * (1f / movementScale) * Time.deltaTime),
             rig.velocity.y
         );
+
+        rig.gravityScale = movementScale;
 
         if (rig.velocity.magnitude > maxSpeed)
         {
@@ -86,19 +89,19 @@ public abstract class BasePlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f,0f,0f);
 
             
-            rig.AddForce(Vector2.right * speed);
+            rig.AddForce(Vector2.right * speed * MovementScale);
             facingRight = true;
         }
         if (Input.GetKey(keyConfig.left))
         {
             //transform.Rotate(Vector3.right * 180);
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            rig.AddForce(Vector2.right * -speed);
+            rig.AddForce(Vector2.right * -speed * MovementScale);
             facingRight = false;
         }
         if (Input.GetKeyDown(keyConfig.jump) && grounded == true)
         {
-            rig.AddForce(Vector2.up * jumpforce);
+            rig.AddForce(Vector2.up * jumpforce * MovementScale);
             grounded = false;
         }
     }
@@ -109,6 +112,12 @@ public abstract class BasePlayerController : MonoBehaviour
         {
             grounded = true;
         }
+    }
+
+    public float MovementScale
+    {
+        get { return movementScale; }
+        set { movementScale = value; }
     }
 
     public virtual int Health

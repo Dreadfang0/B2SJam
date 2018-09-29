@@ -18,10 +18,10 @@ public class ExplosionEffect : Effect
 
     private IEnumerator ExplosionRoutine(BasePlayerController self, BasePlayerController opponent)
     {
-        self.Frozen = true;
-        opponent.Frozen = true;
-
         var attr = EffectAttributes.instance.explosionAttributes;
+
+        self.MovementScale = attr.selfMovementScale;
+        opponent.MovementScale = attr.opponentMovementScale;
 
         attr.omae.Play();
 
@@ -37,8 +37,7 @@ public class ExplosionEffect : Effect
 
         yield return new WaitForSecondsRealtime(explosionDelay);
 
-        self.Frozen = false;
-        opponent.Frozen = false;
+        self.MovementScale = opponent.MovementScale = 1f;
 
         var pushDir = opponent.gameObject.transform.position - self.gameObject.transform.position;
         var min = EffectAttributes.instance.explosionAttributes.minForce;

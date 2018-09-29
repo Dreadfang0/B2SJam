@@ -49,6 +49,9 @@ public class EffectAttributes : MonoBehaviour
         public float minForce;
         public float maxForce;
 
+        public float selfMovementScale;
+        public float opponentMovementScale;
+
         public AudioSource omae;
         public AudioSource nani;
         public AudioSource boom;
