@@ -8,6 +8,6 @@ public class MusicController : MonoBehaviour
 
 	void Update ()
     {
-        GetComponent<AudioSource>().pitch = 1f - (1f - Time.timeScale) * pitchMultiplier;
+        GetComponent<AudioSource>().pitch = Mathf.Clamp(1f - (1f - Time.timeScale) * pitchMultiplier, 0.5f, 2f);
 	}
 }
