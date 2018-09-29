@@ -21,20 +21,34 @@ public class ExplosionEffect : Effect
         self.Frozen = true;
         opponent.Frozen = true;
 
-        yield return new WaitForSeconds(0f); // placeholder
+        var attr = EffectAttributes.instance.explosionAttributes;
 
-        // 1. Zoom to self -> omae wa mou shindeiru
-        // 2. Pan to opponent -> NANI?!
-        // 3. xplosion
+        attr.omae.Play();
+
+        yield return new WaitForSecondsRealtime(attr.omae.clip.length);
+
+        attr.nani.Play();
+
+        yield return new WaitForSecondsRealtime(attr.nani.clip.length);
+
+        attr.boom.Play();
+
+        var explosionDelay = 0.85f;
+
+        yield return new WaitForSecondsRealtime(explosionDelay);
+
+        self.Frozen = false;
+        opponent.Frozen = false;
 
         var pushDir = opponent.gameObject.transform.position - self.gameObject.transform.position;
         var min = EffectAttributes.instance.explosionAttributes.minForce;
         var max = EffectAttributes.instance.explosionAttributes.maxForce;
+        var pushForce = (min + (max - min) * EffectState.instance.CurrentIntensity);
 
-        opponent.Push(pushDir.normalized * (min + (max - min) * EffectState.instance.CurrentIntensity));
+        self.Push(Vector2.up * pushForce);
+        opponent.Push(pushDir.normalized * pushForce);
 
-        self.Frozen = false;
-        opponent.Frozen = false;
+        yield return new WaitForSecondsRealtime(attr.boom.clip.length - explosionDelay);
 
         ended = true;
     }

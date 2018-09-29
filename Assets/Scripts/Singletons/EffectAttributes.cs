@@ -48,6 +48,10 @@ public class EffectAttributes : MonoBehaviour
     {
         public float minForce;
         public float maxForce;
+
+        public AudioSource omae;
+        public AudioSource nani;
+        public AudioSource boom;
     }
     public ExplosionEffectAttr explosionAttributes;
 
