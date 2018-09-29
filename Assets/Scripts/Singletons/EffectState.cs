@@ -8,8 +8,9 @@ public class EffectState : MonoBehaviour
 
     // Effect test override (set to __Count to disable)
     public EffectType effectTypeOverride = EffectType.__Count;
+    public float initialIntensity;
 
-    private float currentIntensity = 0.1f;
+    private float currentIntensity;
     private Dictionary<EffectType, List<Effect>> activeEffects = new Dictionary<EffectType, List<Effect>>();
     // private Dictionary<EffectType, List<EffectListener>> effectListeners = new Dictionary<EffectType, List<EffectListener>>();
     
@@ -22,6 +23,8 @@ public class EffectState : MonoBehaviour
 
         for (int i = 0; i < (int)EffectType.__Count; ++i)
             activeEffects.Add((EffectType)i, new List<Effect>());
+
+        currentIntensity = initialIntensity;
     }
 
     void Update()

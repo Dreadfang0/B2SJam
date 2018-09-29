@@ -13,6 +13,7 @@ public enum EffectType
     // Env
     Gravity,
     AutoScroll,
+
     __Count, // Keep this last
 }
 

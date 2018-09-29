@@ -11,6 +11,9 @@ public class ThrowEffect : Effect
 
     public override void Begin(BasePlayerController player)
     {
-        player.Push(Vector2.up * EffectAttributes.instance.throwAttributes.force);
+        var min = EffectAttributes.instance.throwAttributes.minForce;
+        var max = EffectAttributes.instance.throwAttributes.maxForce;
+
+        player.Push(Vector2.up * (min + (max - min) * EffectState.instance.CurrentIntensity));
     }
 }

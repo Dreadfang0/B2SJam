@@ -34,6 +34,7 @@ public class CameraControl : MonoBehaviour {
         }
             mainCamera.transform.position += Vector3.up * Time.deltaTime * catchUpSpeed;
     }
+
     public void SetAutoScroll(bool enabled) {
         autoScroll = enabled;
     }

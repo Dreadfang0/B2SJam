@@ -3,25 +3,34 @@ using System.Collections;
 
 public class GravityEffect:Effect
 {
-    float defaultGravity = 9.81f;
-    float lowGravity = 6f;
+    float oldGravity;
+
     bool ended = false;
-    float duration = 5f;
+
     public override bool HasEnded()
     {
         return ended;
     }
+
     public override void Begin(BasePlayerController player)
     {
-        Physics2D.gravity = Vector2.down* lowGravity;
+        oldGravity = Physics2D.gravity.y;
+
+        Physics2D.gravity = Vector2.down * EffectAttributes.instance.gravityAttributes.lowGravity;
+
+        var min = EffectAttributes.instance.gravityAttributes.minDuration;
+        var max = EffectAttributes.instance.gravityAttributes.maxDuration;
+
         EffectState.instance.StartCoroutine(
-            HandleDuration(duration)
+            HandleDuration(min + (max - min) * EffectState.instance.CurrentIntensity)
         );
     }
+
     public override void End()
     {
-        Physics2D.gravity = Vector2.down * defaultGravity;
+        Physics2D.gravity = Vector2.down * oldGravity;
     }
+
     private IEnumerator HandleDuration(float seconds)
     {
         yield return new WaitForSeconds(seconds);

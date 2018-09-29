@@ -18,8 +18,11 @@ public class FreezeEffect : Effect
 
         player.Frozen = true;
 
+        var min = EffectAttributes.instance.freezeAttributes.minDuration;
+        var max = EffectAttributes.instance.freezeAttributes.maxDuration;
+
         EffectState.instance.StartCoroutine(
-            HandleDuration(EffectAttributes.instance.freezeAttributes.maxDuration * EffectState.instance.CurrentIntensity)
+            HandleDuration(min + (max - min) * EffectState.instance.CurrentIntensity)
         );
     }
 

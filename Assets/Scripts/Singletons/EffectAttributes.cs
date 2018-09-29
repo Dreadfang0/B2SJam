@@ -34,6 +34,7 @@ public class EffectAttributes : MonoBehaviour
     [System.Serializable]
     public class FreezeEffectAttr
     {
+        public float minDuration;
         public float maxDuration;
     }
     public FreezeEffectAttr freezeAttributes;
@@ -43,7 +44,8 @@ public class EffectAttributes : MonoBehaviour
     [System.Serializable]
     public class ExplosionEffectAttr
     {
-        public float pushForce;
+        public float minForce;
+        public float maxForce;
     }
     public ExplosionEffectAttr explosionAttributes;
 
@@ -52,7 +54,33 @@ public class EffectAttributes : MonoBehaviour
     [System.Serializable]
     public class ThrowEffectAttr
     {
-        public float force;
+        public float minForce;
+        public float maxForce;
     }
     public ThrowEffectAttr throwAttributes;
+
+    // ******************************************* //
+
+    [System.Serializable]
+    public class GravityEffectAttr
+    {
+        public float lowGravity;
+
+        public float minDuration;
+        public float maxDuration;
+    }
+    public GravityEffectAttr gravityAttributes;
+
+    // ******************************************* //
+
+    [System.Serializable]
+    public class AutoScrollAttributes
+    {
+        public float minDuration;
+        public float maxDuration;
+
+        public float minSpeed;
+        public float maxSpeed;
+    }
+    public AutoScrollAttributes autoScrollAttributes;
 }
