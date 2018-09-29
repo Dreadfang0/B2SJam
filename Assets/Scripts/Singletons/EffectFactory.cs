@@ -10,7 +10,7 @@ public enum EffectType
     Throw,
 
     // Env
-
+    
     
     __Count, // Keep this last
 }

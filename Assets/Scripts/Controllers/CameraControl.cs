@@ -3,28 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour {
+    public static CameraControl instance;
     public float scrollSpeed = 1f;
     public GameObject[] players;
     public float catchUpPower = 2f;
     Camera mainCamera;
+    public bool autoScroll = false;
+    public float catchUpTreshold = 0.75f;
     // Use this for initialization
     void Awake () {
         mainCamera = Camera.main;
+        instance = this;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         float catchUpSpeed = scrollSpeed;
+        if (autoScroll == false)
+        {
+            catchUpSpeed = 0f;
+        }
         foreach (GameObject p in players)
         {
-            //starts catchup from half screen upwards
-            float lerp = mainCamera.WorldToScreenPoint(p.transform.position).y / (Screen.height / 2f);
-            //raises to power to accelerate more towards the top of the screen
-            if (lerp > 0 && scrollSpeed * Mathf.Pow(lerp,catchUpPower) > catchUpSpeed)
+            float lerp = mainCamera.WorldToScreenPoint(p.transform.position).y / Screen.height;
+            //lerp to speed up towards the top of the screen
+            if (lerp > catchUpTreshold && scrollSpeed * Mathf.Lerp(0,catchUpPower,lerp - catchUpTreshold)> catchUpSpeed)
             {
-                catchUpSpeed = scrollSpeed * Mathf.Pow(lerp, catchUpPower);
+                catchUpSpeed = scrollSpeed * Mathf.Lerp(0, catchUpPower, lerp - catchUpTreshold);
             }
         }
-        mainCamera.transform.position += Vector3.up * Time.deltaTime * catchUpSpeed;
+            mainCamera.transform.position += Vector3.up * Time.deltaTime * catchUpSpeed;
+    }
+    public void SetAutoScroll(bool enabled) {
+        autoScroll = enabled;
     }
 }
