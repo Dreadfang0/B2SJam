@@ -148,14 +148,11 @@ public abstract class BasePlayerController : MonoBehaviour
         // TODO: multiply by intensity
         rig.AddForce(dir);
     }
-    bool punching = false;
     float punchTime = 0.25f;
     IEnumerator Punch()
     {
-        punching = true;
         //start animating
         yield return new WaitForSeconds(punchTime);
-        punching = false;
         Collider2D[] hits = Physics2D.OverlapCapsuleAll(hitTrigger.bounds.center, hitTrigger.bounds.size, CapsuleDirection2D.Horizontal, 0f);
         foreach (Collider2D c in hits)
         {

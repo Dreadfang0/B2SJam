@@ -13,7 +13,6 @@ public class Player1Controller : BasePlayerController
     public float dashCooldown;
     public float grabCooldown;
     bool grabbing = false;
-    float grabRange = 0.5f;
     public Vector3 punchVector;
     private enum Ability
     {

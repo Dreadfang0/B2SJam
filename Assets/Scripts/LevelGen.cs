@@ -9,8 +9,13 @@ public class LevelGen : MonoBehaviour {
     public GameObject startTile;
     GameObject lastTile;
     Camera mainCamera;
+    public GameObject background;
 	// Use this for initialization
 	void Awake () {
+        if (background != null)
+        {
+            Debug.Log(background.GetComponent<SpriteRenderer>().bounds.size.y + "ADD BACKGROUND GEN");
+        }
         mainCamera = Camera.main;
         spawnedTiles = new List<GameObject>();
         spawnedTiles.Add(startTile);
