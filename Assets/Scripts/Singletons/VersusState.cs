@@ -12,7 +12,8 @@ public class VersusState : MonoBehaviour
     public int intensityLowerThreshold;
     public int intensityUpperThreshold;
 
-    public float timeShiftEaseTime = 0.5f;
+    public float timeShiftEaseTime;
+    public float defaultGravity;
 
     private class SpeedChange
     {
