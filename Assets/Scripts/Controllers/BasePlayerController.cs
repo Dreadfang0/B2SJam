@@ -26,6 +26,7 @@ public abstract class BasePlayerController : MonoBehaviour
 
     private float[] cooldowns = new float[3];
     private bool frozen = false;
+    protected bool facingRight = false;
 
     public BasePlayerController FindOpponent()
     {
@@ -83,10 +84,12 @@ public abstract class BasePlayerController : MonoBehaviour
         if (Input.GetKey(keyConfig.right))
         {
             rig.AddForce(Vector2.right * speed);
+            facingRight = true;
         }
         if (Input.GetKey(keyConfig.left))
         {
             rig.AddForce(Vector2.right * -speed);
+            facingRight = false;
         }
         if (Input.GetKeyDown(keyConfig.jump) && grounded == true)
         {
