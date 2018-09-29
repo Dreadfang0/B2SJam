@@ -117,4 +117,15 @@ public class EffectAttributes : MonoBehaviour
         public AudioSource endAudio;
     }
     public SlowMoAttributes slowMoAttributes;
+
+    // ******************************************* //
+
+    [System.Serializable]
+    public class FullLife3Attributes
+    {
+        public float visibleFor;
+
+        public GameObject prefab;
+    }
+    public FullLife3Attributes fullLife3Attributes;
 }
