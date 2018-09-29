@@ -6,16 +6,22 @@ public class EffectState : MonoBehaviour
 {
     public static EffectState instance;
 
-    private float currentIntensity = 0f;
+    // Effect test override (set to __Count to disable)
+    public EffectType effectTypeOverride = EffectType.__Count;
+
+    private float currentIntensity = 0.1f;
     private Dictionary<EffectType, List<Effect>> activeEffects = new Dictionary<EffectType, List<Effect>>();
     // private Dictionary<EffectType, List<EffectListener>> effectListeners = new Dictionary<EffectType, List<EffectListener>>();
     
 	void Awake()
     {
-		if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        if (instance != null)
+            Destroy(instance.gameObject);
+
+        instance = this;
+
+        for (int i = 0; i < (int)EffectType.__Count; ++i)
+            activeEffects.Add((EffectType)i, new List<Effect>());
     }
 
     void Update()
@@ -39,14 +45,14 @@ public class EffectState : MonoBehaviour
         }
     }
 
-    public float CurrentIntensity()
+    public float CurrentIntensity
     {
-        return currentIntensity;
+        get { return currentIntensity; }
     }
 
     public void RaiseIntensity(float by)
     {
-        currentIntensity = Mathf.Max(currentIntensity + by, 1f);
+        currentIntensity = Mathf.Min(currentIntensity + by, 1f);
     }
 
     //public void AddListener(EffectType type, EffectListener listener)
@@ -54,7 +60,7 @@ public class EffectState : MonoBehaviour
     //    effectListeners[type].Add(listener);
     //}
 
-    public void Trigger(EffectType type, object player = null)
+    public void Trigger(EffectType type, BasePlayerController player = null)
     {
         var effect = EffectFactory.Create(type);
 
@@ -69,8 +75,13 @@ public class EffectState : MonoBehaviour
     }
 
     // Trigger a random effect
-    public void Trigger(object player = null)
+    public void Trigger(BasePlayerController player)
     {
-        Trigger((EffectType)Random.Range(0, (int)(EffectType.__Count)), player);
+        Trigger(
+            effectTypeOverride != EffectType.__Count ?
+                effectTypeOverride :
+                (EffectType)Random.Range(0, (int)EffectType.__Count),
+            player
+        );
     }
 }
