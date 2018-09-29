@@ -36,7 +36,7 @@ public class Player1Controller : BasePlayerController
     {
         base.FixedUpdate();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && AbilityReady(Ability.Ananas))
+        if (Input.GetKeyDown(KeyCode.RightControl) && AbilityReady(Ability.Ananas))
         {
             Ananas();
         }
@@ -44,15 +44,16 @@ public class Player1Controller : BasePlayerController
 
     void Ananas()
     {
-        SetAbilityCooldown(Ability.Ananas, gunCooldown);
-        var shot = (GameObject)Instantiate(ananas, gunpoint.position, gunpoint.rotation);
         int direction = -1;
         if (facingRight)
         {
             direction = 1;
         }
-        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 1 * direction;
-        Destroy(shot, 3.0f);
+        SetAbilityCooldown(Ability.Ananas, gunCooldown);
+        GameObject shot = Instantiate(ananas, transform.position + Vector3.right * direction,Quaternion.identity);
+        Rigidbody2D shotRb = shot.GetComponent<Rigidbody2D>();
+        shotRb.velocity = transform.right * direction * 1f + transform.right * rig.velocity.x + transform.up * 3f;
+        shotRb.angularVelocity = -500f * direction;
     }
 
     void DLC()
