@@ -6,7 +6,7 @@ public class Player1Controller : BasePlayerController
 {
     // Gun ability stuff
     public Transform gunpoint;
-    public GameObject bullet;
+    public GameObject ananas;
 
     // Ability Cooldowns
     public float gunCooldown;
@@ -45,9 +45,14 @@ public class Player1Controller : BasePlayerController
     void Ananas()
     {
         SetAbilityCooldown(Ability.Ananas, gunCooldown);
-        var shot = (GameObject)Instantiate(bullet, gunpoint.position, gunpoint.rotation);
-        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 1 * Mathf.Sign(gunpoint.transform.localPosition.x);
-        //Destroy(shot, 1.0f);
+        var shot = (GameObject)Instantiate(ananas, gunpoint.position, gunpoint.rotation);
+        int direction = -1;
+        if (facingRight)
+        {
+            direction = 1;
+        }
+        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 1 * direction;
+        Destroy(shot, 3.0f);
     }
 
     void DLC()
