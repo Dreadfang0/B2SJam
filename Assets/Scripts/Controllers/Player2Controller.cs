@@ -7,7 +7,16 @@ public class Player2Controller : BasePlayerController
     // Gun ability stuff
     public Transform gunpoint;
     public GameObject bullet;
-    
+
+    // DLC ability stuff
+    public Transform Telepoint;
+    public float teleportTime;
+    public BoxCollider2D hitbox;
+    public MeshRenderer visuals; // <-- Replace meshrenderer with Sprite renderer when art is gotten
+    public ParticleSystem telePart; // <-- make a fancy particle effect to be activated during teleportation sequence
+    // Lootbox Storm ability stuff (use gunpoint to shoot the stuff)
+    public GameObject minilootbox;
+
     // Ability Cooldowns
     public float gunCooldown;
     public float lootboxstormCooldown;
@@ -31,7 +40,10 @@ public class Player2Controller : BasePlayerController
             // Handle death here?
         }
     }
-
+    private void Start()
+    {
+        telePart.Stop();
+    }
     protected override void FixedUpdate ()
     {
         base.FixedUpdate();
@@ -39,6 +51,11 @@ public class Player2Controller : BasePlayerController
         if (Input.GetKeyDown(KeyCode.Alpha1) && AbilityReady(Ability.Gun))
         {
             Gun();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && AbilityReady(Ability.Dlc))
+        {
+            StartCoroutine(teleTime());
+            //DLC();
         }
     }
 
@@ -52,9 +69,23 @@ public class Player2Controller : BasePlayerController
 
     void DLC()
     {
-
+        
+        
     }
-
+    IEnumerator teleTime()
+    {
+        visuals.enabled = false;
+        hitbox.enabled = false;
+        rig.gravityScale = 0;
+        telePart.Play();
+        yield return new WaitForSeconds(teleportTime);
+        gameObject.transform.position = Telepoint.position;
+        yield return new WaitForSeconds(teleportTime);
+        telePart.Stop();
+        rig.gravityScale = 1;
+        visuals.enabled = true;
+        hitbox.enabled = true;
+    }
     void LootBoxStorm()
     {
 
