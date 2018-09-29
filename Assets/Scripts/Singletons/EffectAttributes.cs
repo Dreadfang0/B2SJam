@@ -36,6 +36,8 @@ public class EffectAttributes : MonoBehaviour
     {
         public float minDuration;
         public float maxDuration;
+
+        public AudioSource beginAudio;
     }
     public FreezeEffectAttr freezeAttributes;
     

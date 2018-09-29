@@ -18,12 +18,15 @@ public class FreezeEffect : Effect
 
         player.Frozen = true;
 
-        var min = EffectAttributes.instance.freezeAttributes.minDuration;
-        var max = EffectAttributes.instance.freezeAttributes.maxDuration;
+        var attr = EffectAttributes.instance.freezeAttributes;
+        var min = attr.minDuration;
+        var max = attr.maxDuration;
 
         EffectState.instance.StartCoroutine(
             HandleDuration(min + (max - min) * EffectState.instance.CurrentIntensity)
         );
+
+        attr.beginAudio.Play();
     }
 
     public override void End()
