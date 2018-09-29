@@ -115,7 +115,11 @@ public abstract class BasePlayerController : MonoBehaviour
     public virtual bool Frozen
     {
         get { return frozen; }
-        set { frozen = value; }
+        set {
+            frozen = value;
+            
+            rig.constraints = frozen ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     // Dir is not normalized
