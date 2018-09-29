@@ -16,18 +16,17 @@ public class Player2Controller : BasePlayerController
     public GameObject bullet;
     
     // Ability Cooldowns
-    float lootboxstormCoolingdown;
-    public float lootboxstormCooldown;
-    float dlcCoolingdown;
-    public float dlcCooldown;
-    float gunCoolingdown;
     public float gunCooldown;
+    public float lootboxstormCooldown;
+    public float dlcCooldown;
 
-	// Use this for initialization
-	void Start ()
+    private enum Ability
     {
-        
-	}
+        Gun,
+        Dlc,
+        Storm,
+    }
+    private float[] cooldowns = new float[3];
 
     public override int Health
     {
@@ -41,10 +40,32 @@ public class Player2Controller : BasePlayerController
         }
     }
 
-    // Update is called once per frame
+    public override void ReduceCooldown(float by)
+    {
+        var mult = 1f - by;
+
+        for (int i = 0; i < cooldowns.Length; ++i)
+            cooldowns[i] *= mult;
+    }
+
+    private void SetAbilityCooldown(Ability ability, float time)
+    {
+        cooldowns[(int)ability] = time;
+    }
+
+    private bool AbilityReady(Ability ability)
+    {
+        return cooldowns[(int)ability] <= 0f;
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < cooldowns.Length; ++i)
+            cooldowns[i] = Mathf.Max(0f, cooldowns[i] - Time.deltaTime);
+    }
+
     void FixedUpdate ()
     {
-        
         if (rig.velocity.magnitude > maxSpeed)
         {
             rig.velocity = rig.velocity.normalized * maxSpeed;
@@ -62,15 +83,12 @@ public class Player2Controller : BasePlayerController
             rig.AddForce(Vector2.up * jumpforce);
             grounded = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && gunCoolingdown == 0)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && AbilityReady(Ability.Gun))
         {
             Gun();
         }
-    
-
-
-
     }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "ground")
@@ -78,18 +96,21 @@ public class Player2Controller : BasePlayerController
             grounded = true;
         }
     }
+
     void Gun()
     {
-        gunCoolingdown = gunCooldown;
-        var shot = (GameObject)Instantiate(bullet,gunpoint.position,gunpoint.rotation);
+        SetAbilityCooldown(Ability.Gun, gunCooldown);
+        var shot = (GameObject)Instantiate(bullet, gunpoint.position, gunpoint.rotation);
         shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 10;
         Destroy(shot, 1.0f);
     }
+
     void DLC()
     {
 
     }
-    void lootBoxStorm()
+
+    void LootBoxStorm()
     {
 
     }
