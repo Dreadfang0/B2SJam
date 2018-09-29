@@ -33,7 +33,13 @@ public class GravityEffect:Effect
 
     private IEnumerator HandleDuration(float seconds)
     {
+        var attr = EffectAttributes.instance.gravityAttributes;
+
+        attr.sound.Play();
+
         yield return new WaitForSeconds(seconds);
+
+        attr.sound.Stop();
 
         ended = true;
     }

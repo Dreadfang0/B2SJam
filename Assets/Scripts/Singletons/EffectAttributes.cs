@@ -65,6 +65,8 @@ public class EffectAttributes : MonoBehaviour
     {
         public float minForce;
         public float maxForce;
+
+        public AudioSource sound;
     }
     public ThrowEffectAttr throwAttributes;
 
@@ -77,6 +79,8 @@ public class EffectAttributes : MonoBehaviour
 
         public float minDuration;
         public float maxDuration;
+
+        public AudioSource sound;
     }
     public GravityEffectAttr gravityAttributes;
 

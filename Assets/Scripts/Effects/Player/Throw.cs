@@ -15,5 +15,7 @@ public class ThrowEffect : Effect
         var max = EffectAttributes.instance.throwAttributes.maxForce;
 
         player.Push(Vector2.up * (min + (max - min) * EffectState.instance.CurrentIntensity));
+
+        EffectAttributes.instance.throwAttributes.sound.Play();
     }
 }
