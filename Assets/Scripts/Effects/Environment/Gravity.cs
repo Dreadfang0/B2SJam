@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GravityEffect:Effect
 {
-    float oldGravity;
+    Vector2 oldGravity;
 
     bool ended = false;
 
@@ -14,7 +14,7 @@ public class GravityEffect:Effect
 
     public override void Begin(BasePlayerController player)
     {
-        oldGravity = Physics2D.gravity.y;
+        oldGravity = Physics2D.gravity;
 
         Physics2D.gravity = Vector2.down * EffectAttributes.instance.gravityAttributes.lowGravity;
 
@@ -28,7 +28,7 @@ public class GravityEffect:Effect
 
     public override void End()
     {
-        Physics2D.gravity = Vector2.down * oldGravity;
+        Physics2D.gravity = oldGravity;
     }
 
     private IEnumerator HandleDuration(float seconds)
