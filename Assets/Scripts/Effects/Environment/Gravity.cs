@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Gravity:Effect
+public class GravityEffect:Effect
 {
-    float defaultGravity = -9.81f;
-    float lowGravity = -6f;
+    float defaultGravity = 9.81f;
+    float lowGravity = 6f;
     bool ended = false;
     float duration = 5f;
     public override bool HasEnded()
@@ -15,7 +15,7 @@ public class Gravity:Effect
     {
         Physics2D.gravity = Vector2.down* lowGravity;
         EffectState.instance.StartCoroutine(
-            HandleDuration(duration * EffectState.instance.CurrentIntensity)
+            HandleDuration(duration)
         );
     }
     public override void End()

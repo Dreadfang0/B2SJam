@@ -11,8 +11,8 @@ public enum EffectType
     Explosion,
 
     // Env
-    
-    
+    Gravity,
+    AutoScroll,
     __Count, // Keep this last
 }
 
@@ -34,6 +34,12 @@ public class EffectFactory
 
             case EffectType.Explosion:
                 return new ExplosionEffect();
+
+            case EffectType.Gravity:
+                return new GravityEffect();
+
+            case EffectType.AutoScroll:
+                return new AutoScrollEffect();
 
             default:
                 return null;

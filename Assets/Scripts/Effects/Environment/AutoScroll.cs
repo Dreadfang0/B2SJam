@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AutoScroll : Effect
+public class AutoScrollEffect : Effect
 {
     private bool ended = false;
     float duration = 5f;
@@ -13,7 +13,7 @@ public class AutoScroll : Effect
     {
         CameraControl.instance.SetAutoScroll(true);
         EffectState.instance.StartCoroutine(
-            HandleDuration(duration * EffectState.instance.CurrentIntensity)
+            HandleDuration(duration)
         );
         //speed too?
     }

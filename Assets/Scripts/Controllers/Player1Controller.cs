@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player2Controller : BasePlayerController
+public class Player1Controller : BasePlayerController
 {
     public float PowerMultiplier;
     public float speed;
@@ -10,11 +10,11 @@ public class Player2Controller : BasePlayerController
     public float jumpforce;
     public bool grounded;
     public Collider2D feetTrigger;
-    
+
     // Gun ability stuff
     public Transform gunpoint;
     public GameObject bullet;
-    
+
     // Ability Cooldowns
     public float gunCooldown;
     public float lootboxstormCooldown;
@@ -22,9 +22,9 @@ public class Player2Controller : BasePlayerController
 
     private enum Ability
     {
-        Gun,
-        Dlc,
-        Storm,
+        Ananas,
+        Dash,
+        Throw
     }
     private float[] cooldowns = new float[3];
 
@@ -64,7 +64,7 @@ public class Player2Controller : BasePlayerController
             cooldowns[i] = Mathf.Max(0f, cooldowns[i] - Time.deltaTime);
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
         if (rig.velocity.magnitude > maxSpeed)
         {
@@ -95,9 +95,9 @@ public class Player2Controller : BasePlayerController
             rig.AddForce(Vector2.up * jumpforce);
             grounded = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && AbilityReady(Ability.Gun))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && AbilityReady(Ability.Ananas))
         {
-            Gun();
+            Ananas();
         }
     }
 
@@ -109,12 +109,12 @@ public class Player2Controller : BasePlayerController
         }
     }
 
-    void Gun()
+    void Ananas()
     {
-        SetAbilityCooldown(Ability.Gun, gunCooldown);
+        SetAbilityCooldown(Ability.Ananas, gunCooldown);
         var shot = (GameObject)Instantiate(bullet, gunpoint.position, gunpoint.rotation);
-        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 10 * Mathf.Sign(gunpoint.transform.localPosition.x);
-        Destroy(shot, 1.0f);
+        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 1 * Mathf.Sign(gunpoint.transform.localPosition.x);
+        //Destroy(shot, 1.0f);
     }
 
     void DLC()
