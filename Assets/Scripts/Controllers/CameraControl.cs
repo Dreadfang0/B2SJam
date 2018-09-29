@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraControl : MonoBehaviour {
+public class CameraControl : MonoBehaviour
+{
     public static CameraControl instance;
     public float scrollSpeed = 1f;
     public GameObject[] players;
@@ -18,7 +19,8 @@ public class CameraControl : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         float catchUpSpeed = scrollSpeed;
         if (autoScroll == false)
         {
@@ -33,7 +35,7 @@ public class CameraControl : MonoBehaviour {
                 catchUpSpeed = scrollSpeed * Mathf.Lerp(0, catchUpPower, lerp - catchUpTreshold);
             }
         }
-            mainCamera.transform.position += Vector3.up * Time.deltaTime * (catchUpSpeed * autoScrollSpeed);
+            mainCamera.transform.position += Vector3.up * Time.unscaledDeltaTime * (catchUpSpeed * autoScrollSpeed);
     }
 
     public void SetAutoScroll(bool enabled, float speed) {

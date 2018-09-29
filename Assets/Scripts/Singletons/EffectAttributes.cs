@@ -83,4 +83,30 @@ public class EffectAttributes : MonoBehaviour
         public float maxSpeed;
     }
     public AutoScrollAttributes autoScrollAttributes;
+
+    // ******************************************* //
+
+    [System.Serializable]
+    public class SpeedUpAttributes
+    {
+        public float minDuration;
+        public float maxDuration;
+
+        public float minSpeed;
+        public float maxSpeed;
+    }
+    public SpeedUpAttributes speedUpAttributes;
+
+    // ******************************************* //
+
+    [System.Serializable]
+    public class SlowMoAttributes
+    {
+        public float minDuration;
+        public float maxDuration;
+
+        public float minSpeed;
+        public float maxSpeed;
+    }
+    public SlowMoAttributes slowMoAttributes;
 }

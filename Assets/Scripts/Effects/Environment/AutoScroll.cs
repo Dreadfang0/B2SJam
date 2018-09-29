@@ -17,9 +17,7 @@ public class AutoScrollEffect : Effect
             var max = EffectAttributes.instance.autoScrollAttributes.maxSpeed;
             
             CameraControl.instance.SetAutoScroll(true, min + (max - min) * EffectState.instance.CurrentIntensity);
-        }
-
-        {
+        }{
             var min = EffectAttributes.instance.autoScrollAttributes.minDuration;
             var max = EffectAttributes.instance.autoScrollAttributes.maxDuration;
 

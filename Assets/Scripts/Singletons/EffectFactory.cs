@@ -13,6 +13,8 @@ public enum EffectType
     // Env
     Gravity,
     AutoScroll,
+    SlowMo,
+    SpeedUp,
 
     __Count, // Keep this last
 }
@@ -41,6 +43,12 @@ public class EffectFactory
 
             case EffectType.AutoScroll:
                 return new AutoScrollEffect();
+
+            case EffectType.SlowMo:
+                return new SlowMoEffect();
+
+            case EffectType.SpeedUp:
+                return new SpeedUpEffect();
 
             default:
                 return null;
