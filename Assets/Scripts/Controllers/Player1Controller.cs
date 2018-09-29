@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class Player1Controller : BasePlayerController
 {
-    // Pineapple ability stuff
+    public float PowerMultiplier;
+    public float speed;
+    public float maxSpeed;
+    public float jumpforce;
+    public bool grounded;
+    public Collider2D feetTrigger;
+
+    // Gun ability stuff
+    public Transform gunpoint;
+    public GameObject bullet;
 
     // Ability Cooldowns
-    public float pineappleCooldown;
-    public float dashCooldown;
-    public float throwCooldown;
+    public float gunCooldown;
+    public float lootboxstormCooldown;
+    public float dlcCooldown;
 
     private enum Ability
     {
-        Pineapple,
+        Ananas,
         Dash,
-        Throw,
+        Throw
     }
+    private float[] cooldowns = new float[3];
 
     public override int Health
     {
@@ -30,8 +40,90 @@ public class Player1Controller : BasePlayerController
         }
     }
 
-    protected override void FixedUpdate()
+    public override void ReduceCooldown(float by)
     {
-        base.FixedUpdate();
+        var mult = 1f - by;
+
+        for (int i = 0; i < cooldowns.Length; ++i)
+            cooldowns[i] *= mult;
+    }
+
+    private void SetAbilityCooldown(Ability ability, float time)
+    {
+        cooldowns[(int)ability] = time;
+    }
+
+    private bool AbilityReady(Ability ability)
+    {
+        return cooldowns[(int)ability] <= 0f;
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < cooldowns.Length; ++i)
+            cooldowns[i] = Mathf.Max(0f, cooldowns[i] - Time.deltaTime);
+    }
+
+    void FixedUpdate()
+    {
+        if (rig.velocity.magnitude > maxSpeed)
+        {
+            rig.velocity = rig.velocity.normalized * maxSpeed;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rig.AddForce(Vector2.right * speed);
+            if (gunpoint.localPosition.x < 0)
+            {
+                Vector3 mirrorPos = gunpoint.localPosition;
+                mirrorPos.x *= -1;
+                gunpoint.transform.localPosition = mirrorPos;
+            }
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            rig.AddForce(Vector2.right * -speed);
+            if (gunpoint.localPosition.x > 0)
+            {
+                Vector3 mirrorPos = gunpoint.localPosition;
+                mirrorPos.x *= -1;
+                gunpoint.transform.localPosition = mirrorPos;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.W) && grounded == true)
+        {
+            rig.AddForce(Vector2.up * jumpforce);
+            grounded = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1) && AbilityReady(Ability.Ananas))
+        {
+            Ananas();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "ground")
+        {
+            grounded = true;
+        }
+    }
+
+    void Ananas()
+    {
+        SetAbilityCooldown(Ability.Ananas, gunCooldown);
+        var shot = (GameObject)Instantiate(bullet, gunpoint.position, gunpoint.rotation);
+        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 1 * Mathf.Sign(gunpoint.transform.localPosition.x);
+        //Destroy(shot, 1.0f);
+    }
+
+    void DLC()
+    {
+
+    }
+
+    void LootBoxStorm()
+    {
+
     }
 }

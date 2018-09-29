@@ -12,7 +12,14 @@ public class LootBoxController : MonoBehaviour
         if (other != null)
             OnPickup(other);
     }
-
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        BasePlayerController player = col.GetComponent<BasePlayerController>();
+        if (player != null)
+        {
+            OnPickup(player);
+        }
+    }
     private void OnPickup(BasePlayerController player)
     {
         EffectState.instance.Trigger(player);
