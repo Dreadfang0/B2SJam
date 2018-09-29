@@ -9,7 +9,6 @@ public class Player2Controller : BasePlayerController
     public float maxSpeed;
     public float jumpforce;
     public bool grounded;
-    public Rigidbody2D rig;
     public Collider2D feetTrigger;
     
     // Gun ability stuff
@@ -30,11 +29,16 @@ public class Player2Controller : BasePlayerController
         
 	}
 
-    public override void Damage(int amount = 1)
+    public override int Health
     {
-        base.Damage(amount);
+        set
+        {
+            base.Health = value;
 
-        // Play pain sounds & trigger screen effects etc.
+            // Play hurt sound etc.
+
+            // Handle death here?
+        }
     }
 
     // Update is called once per frame

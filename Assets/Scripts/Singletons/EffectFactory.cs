@@ -4,8 +4,15 @@ using UnityEngine;
 
 public enum EffectType
 {
-    Test,
-    __Count,
+    // Player
+    Cooldown,
+    Freeze,
+    Throw,
+
+    // Env
+
+    
+    __Count, // Keep this last
 }
 
 public class EffectFactory
@@ -15,8 +22,14 @@ public class EffectFactory
         // Return an effect instance of appropriate type
         switch (type)
         {
-            case EffectType.Test:
-                return new TestEffect();
+            case EffectType.Cooldown:
+                return new CooldownEffect();
+
+            case EffectType.Freeze:
+                return new FreezeEffect();
+
+            case EffectType.Throw:
+                return new ThrowEffect();
 
             default:
                 return null;

@@ -6,16 +6,16 @@ public class EffectState : MonoBehaviour
 {
     public static EffectState instance;
 
-    private float currentIntensity = 0f;
+    private float currentIntensity = 0.1f;
     private Dictionary<EffectType, List<Effect>> activeEffects = new Dictionary<EffectType, List<Effect>>();
     // private Dictionary<EffectType, List<EffectListener>> effectListeners = new Dictionary<EffectType, List<EffectListener>>();
     
 	void Awake()
     {
-		if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+        if (instance != null)
+            Destroy(instance.gameObject);
+
+        instance = this;
     }
 
     void Update()
@@ -39,9 +39,9 @@ public class EffectState : MonoBehaviour
         }
     }
 
-    public float CurrentIntensity()
+    public float CurrentIntensity
     {
-        return currentIntensity;
+        get { return currentIntensity; }
     }
 
     public void RaiseIntensity(float by)
