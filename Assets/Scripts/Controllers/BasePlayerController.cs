@@ -83,11 +83,16 @@ public abstract class BasePlayerController : MonoBehaviour
 
         if (Input.GetKey(keyConfig.right))
         {
+            transform.rotation = Quaternion.Euler(0f,0f,0f);
+
+            
             rig.AddForce(Vector2.right * speed);
             facingRight = true;
         }
         if (Input.GetKey(keyConfig.left))
         {
+            //transform.Rotate(Vector3.right * 180);
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             rig.AddForce(Vector2.right * -speed);
             facingRight = false;
         }

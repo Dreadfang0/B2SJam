@@ -16,7 +16,8 @@ public class Player2Controller : BasePlayerController
     public ParticleSystem telePart; // <-- make a fancy particle effect to be activated during teleportation sequence
     // Lootbox Storm ability stuff (use gunpoint to shoot the stuff)
     public GameObject minilootbox;
-
+    public float minimumShootAngle;
+    public float maximumShootAngle;
     // Ability Cooldowns
     public float gunCooldown;
     public float lootboxstormCooldown;
@@ -55,7 +56,13 @@ public class Player2Controller : BasePlayerController
         if (Input.GetKeyDown(KeyCode.Alpha2) && AbilityReady(Ability.Dlc))
         {
             StartCoroutine(teleTime());
-            //DLC();
+            SetAbilityCooldown(Ability.Dlc, dlcCooldown);
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && AbilityReady(Ability.Storm))
+        {
+            StartCoroutine(storm());
+            SetAbilityCooldown(Ability.Storm, lootboxstormCooldown);
         }
     }
 
@@ -88,6 +95,35 @@ public class Player2Controller : BasePlayerController
     }
     void LootBoxStorm()
     {
+        SetAbilityCooldown(Ability.Storm, lootboxstormCooldown);
+        /*
+        for (int i = 0; i < 10; i++)
+        {
+            var shot = (GameObject)Instantiate(minilootbox, gunpoint.position, Quaternion.Euler(0, 0, transform.eulerAngles.z + Random.Range(minimumShootAngle, maximumShootAngle))) as GameObject;
+            Vector3 direction = minilootbox.transform.rotation * Vector3.right;
 
+
+            shot.GetComponent<Rigidbody2D>().AddRelativeForce(direction * 300);
+
+            Destroy(shot, 1.0f);
+            
+        }*/
+        
+    }
+    IEnumerator storm()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            var shot = (GameObject)Instantiate(minilootbox, gunpoint.position, Quaternion.Euler(0, 0, transform.eulerAngles.z + Random.Range(minimumShootAngle, maximumShootAngle))) as GameObject;
+            Vector3 direction = minilootbox.transform.rotation * Vector3.right;
+
+
+            shot.GetComponent<Rigidbody2D>().AddRelativeForce(direction * 2000);
+
+            Destroy(shot, 1.0f);
+            
+        }
+        
     }
 }
