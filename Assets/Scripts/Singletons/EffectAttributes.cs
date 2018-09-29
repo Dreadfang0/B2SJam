@@ -94,6 +94,8 @@ public class EffectAttributes : MonoBehaviour
 
         public float minSpeed;
         public float maxSpeed;
+
+        public AudioSource sound;
     }
     public AutoScrollAttributes autoScrollAttributes;
 
@@ -137,6 +139,8 @@ public class EffectAttributes : MonoBehaviour
         public float visibleFor;
 
         public GameObject prefab;
+
+        public AudioSource sound;
     }
     public FullLife3Attributes fullLife3Attributes;
 }

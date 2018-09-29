@@ -34,7 +34,13 @@ public class AutoScrollEffect : Effect
 
     private IEnumerator HandleDuration(float seconds)
     {
+        var attr = EffectAttributes.instance.autoScrollAttributes;
+
+        attr.sound.Play();
+
         yield return new WaitForSeconds(seconds);
+
+        attr.sound.Stop();
 
         ended = true;
     }

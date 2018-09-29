@@ -20,6 +20,8 @@ public class FullLife3Effect : Effect
     {
         var attr = EffectAttributes.instance.fullLife3Attributes;
 
+        attr.sound.Play();
+
         var obj = GameObject.Instantiate(attr.prefab, player.transform);
         var sprite = obj.GetComponent<SpriteRenderer>();
 
@@ -36,6 +38,8 @@ public class FullLife3Effect : Effect
             sprite.color = color;
             yield return null;
         }
+
+        attr.sound.Stop();
 
         ended = true;
     }
