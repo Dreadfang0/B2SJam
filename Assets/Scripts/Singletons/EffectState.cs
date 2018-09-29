@@ -19,6 +19,9 @@ public class EffectState : MonoBehaviour
             Destroy(instance.gameObject);
 
         instance = this;
+
+        for (int i = 0; i < (int)EffectType.__Count; ++i)
+            activeEffects.Add((EffectType)i, new List<Effect>());
     }
 
     void Update()
@@ -49,7 +52,7 @@ public class EffectState : MonoBehaviour
 
     public void RaiseIntensity(float by)
     {
-        currentIntensity = Mathf.Max(currentIntensity + by, 1f);
+        currentIntensity = Mathf.Min(currentIntensity + by, 1f);
     }
 
     //public void AddListener(EffectType type, EffectListener listener)
