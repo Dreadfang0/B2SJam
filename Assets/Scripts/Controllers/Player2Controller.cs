@@ -11,7 +11,7 @@ public class Player2Controller : BasePlayerController
     // DLC ability stuff
     public Transform Telepoint;
     public float teleportTime;
-    public BoxCollider2D hitbox;
+    public CapsuleCollider2D hitbox;
     public MeshRenderer visuals; // <-- Replace meshrenderer with Sprite renderer when art is gotten
     public ParticleSystem telePart; // <-- make a fancy particle effect to be activated during teleportation sequence
     // Lootbox Storm ability stuff (use gunpoint to shoot the stuff)
@@ -116,7 +116,7 @@ public class Player2Controller : BasePlayerController
         {
             yield return new WaitForSeconds(0.1f);
             var shot = (GameObject)Instantiate(minilootbox, gunpoint.position, Quaternion.Euler(0, 0, transform.eulerAngles.z + Random.Range(minimumShootAngle, maximumShootAngle))) as GameObject;
-            Vector3 direction = minilootbox.transform.rotation * Vector3.right;
+            Vector3 direction = minilootbox.transform.rotation * transform.right;
 
 
             shot.GetComponent<Rigidbody2D>().AddRelativeForce(direction * 2000);
