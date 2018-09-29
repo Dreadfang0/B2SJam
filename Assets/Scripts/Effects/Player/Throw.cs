@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ThrowEffect : Effect
 {
-    private readonly float throwForce = 1000f;
-
     public override bool HasEnded()
     {
         return true;
@@ -13,6 +11,6 @@ public class ThrowEffect : Effect
 
     public override void Begin(BasePlayerController player)
     {
-        player.Push(Vector2.up * throwForce);
+        player.Push(Vector2.up * EffectAttributes.instance.throwAttributes.force);
     }
 }

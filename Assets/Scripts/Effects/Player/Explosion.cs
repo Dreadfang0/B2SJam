@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ExplosionEffect : Effect
 {
-    private readonly float pushForce = 1000f;
-
     private bool ended = false;
 
     public override bool HasEnded()
@@ -29,7 +27,7 @@ public class ExplosionEffect : Effect
 
         var pushDir = opponent.gameObject.transform.position - self.gameObject.transform.position;
 
-        opponent.Push(pushDir.normalized * pushForce);
+        opponent.Push(pushDir.normalized * EffectAttributes.instance.explosionAttributes.pushForce);
 
         self.Frozen = false;
         opponent.Frozen = false;
