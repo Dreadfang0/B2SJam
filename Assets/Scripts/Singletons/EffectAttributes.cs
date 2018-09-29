@@ -26,6 +26,8 @@ public class EffectAttributes : MonoBehaviour
     {
         [Range(0f, 1f)]
         public float maxReduction;
+
+        public AudioSource sound;
     }
     public CooldownEffectAttr cooldownAttributes;
 

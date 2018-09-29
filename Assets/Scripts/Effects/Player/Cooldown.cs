@@ -11,6 +11,10 @@ public class CooldownEffect : Effect
 
     public override void Begin(BasePlayerController player)
     {
-        player.ReduceCooldown(EffectState.instance.CurrentIntensity * EffectAttributes.instance.cooldownAttributes.maxReduction);
+        var attr = EffectAttributes.instance.cooldownAttributes;
+
+        player.ReduceCooldown(EffectState.instance.CurrentIntensity * attr.maxReduction);
+
+        attr.sound.Play();
     }
 }
