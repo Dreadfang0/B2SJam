@@ -9,26 +9,14 @@ public class RangeExplosion : MonoBehaviour {
     public float delay = 3f;
     public GameObject visualEffect;
     public float visualEffectLifetime = 2f;
-    /*void Start()
+
+    private void Awake()
     {
-        if (range == null)
-        {
-            range = GetComponent<CircleCollider2D>();
-        }
-        
-    }*/
-    void Update()
-    {
-        if (delay > 0)
-        {
-            delay -= Time.deltaTime;
-        }
-        else
-        {
-            Explode();
-        }
+        StartCoroutine(Explode());
     }
-    void Explode() {
+
+    IEnumerator Explode() {
+        yield return new WaitForSeconds(delay);
         List<Rigidbody2D> rbs = new List<Rigidbody2D>();
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, range);
         foreach (Collider2D c in cols)
