@@ -119,7 +119,7 @@ public class Player2Controller : BasePlayerController
             Vector3 direction = minilootbox.transform.rotation * Vector3.right;
 
 
-            shot.GetComponent<Rigidbody2D>().AddRelativeForce(direction * 300);
+            shot.GetComponent<Rigidbody2D>().AddRelativeForce(direction * 2000);
 
             Destroy(shot, 1.0f);
             
