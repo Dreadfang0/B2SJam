@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FreezeEffect : Effect
 {
-    private readonly float maxFreezeDuration = 3f;
-
     private bool ended = false;
     private BasePlayerController player;
 
@@ -21,7 +19,7 @@ public class FreezeEffect : Effect
         player.Frozen = true;
 
         EffectState.instance.StartCoroutine(
-            HandleDuration(maxFreezeDuration * EffectState.instance.CurrentIntensity)
+            HandleDuration(EffectAttributes.instance.freezeAttributes.maxDuration * EffectState.instance.CurrentIntensity)
         );
     }
 

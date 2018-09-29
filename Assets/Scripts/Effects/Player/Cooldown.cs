@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class CooldownEffect : Effect
 {
-    // Between 0 and 1
-    private readonly float maxCooldownReduction = 0.8f;
-
     public override bool HasEnded()
     {
         return true;
@@ -14,6 +11,6 @@ public class CooldownEffect : Effect
 
     public override void Begin(BasePlayerController player)
     {
-        player.ReduceCooldown(EffectState.instance.CurrentIntensity * maxCooldownReduction);
+        player.ReduceCooldown(EffectState.instance.CurrentIntensity * EffectAttributes.instance.cooldownAttributes.maxReduction);
     }
 }
