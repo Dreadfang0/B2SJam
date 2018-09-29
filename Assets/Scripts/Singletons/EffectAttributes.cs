@@ -109,6 +109,9 @@ public class EffectAttributes : MonoBehaviour
 
         public float minSpeed;
         public float maxSpeed;
+
+        public AudioSource beginAudio;
+        public AudioSource endAudio;
     }
     public SlowMoAttributes slowMoAttributes;
 }

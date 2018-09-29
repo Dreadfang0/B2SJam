@@ -35,7 +35,7 @@ public class CameraControl : MonoBehaviour
                 catchUpSpeed = scrollSpeed * Mathf.Lerp(0, catchUpPower, lerp - catchUpTreshold);
             }
         }
-            mainCamera.transform.position += Vector3.up * Time.unscaledDeltaTime * (catchUpSpeed * autoScrollSpeed);
+            mainCamera.transform.position += Vector3.up * Time.deltaTime * (catchUpSpeed * autoScrollSpeed);
     }
 
     public void SetAutoScroll(bool enabled, float speed) {
