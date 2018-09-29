@@ -9,6 +9,7 @@ public class CameraControl : MonoBehaviour {
     public float catchUpPower = 2f;
     Camera mainCamera;
     public bool autoScroll = false;
+    public float autoScrollSpeed = 1f;
     public float catchUpTreshold = 0.75f;
     // Use this for initialization
     void Awake () {
@@ -32,10 +33,11 @@ public class CameraControl : MonoBehaviour {
                 catchUpSpeed = scrollSpeed * Mathf.Lerp(0, catchUpPower, lerp - catchUpTreshold);
             }
         }
-            mainCamera.transform.position += Vector3.up * Time.deltaTime * catchUpSpeed;
+            mainCamera.transform.position += Vector3.up * Time.deltaTime * (catchUpSpeed * autoScrollSpeed);
     }
 
-    public void SetAutoScroll(bool enabled) {
+    public void SetAutoScroll(bool enabled, float speed) {
         autoScroll = enabled;
+        autoScrollSpeed = speed;
     }
 }

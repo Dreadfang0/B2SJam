@@ -15,9 +15,8 @@ public class AutoScrollEffect : Effect
         {
             var min = EffectAttributes.instance.autoScrollAttributes.minSpeed;
             var max = EffectAttributes.instance.autoScrollAttributes.maxSpeed;
-
-            // TODO: SetAutoScroll accept a float
-            CameraControl.instance.SetAutoScroll(true /*min + (max - min) * EffectState.instance.CurrentIntensity*/);
+            
+            CameraControl.instance.SetAutoScroll(true, min + (max - min) * EffectState.instance.CurrentIntensity);
         }
 
         {
@@ -32,7 +31,7 @@ public class AutoScrollEffect : Effect
 
     public override void End()
     {
-        CameraControl.instance.SetAutoScroll(false);
+        CameraControl.instance.SetAutoScroll(false, 1f);
     }
 
     private IEnumerator HandleDuration(float seconds)
