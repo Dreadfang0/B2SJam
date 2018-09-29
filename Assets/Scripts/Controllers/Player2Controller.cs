@@ -70,8 +70,8 @@ public class Player2Controller : BasePlayerController
     {
         SetAbilityCooldown(Ability.Gun, gunCooldown);
         var shot = (GameObject)Instantiate(bullet, gunpoint.position, gunpoint.rotation);
-        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 10 * Mathf.Sign(gunpoint.transform.localPosition.x);
-        Destroy(shot, 1.0f);
+        shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 15 * Mathf.Sign(gunpoint.transform.localPosition.x);
+        Destroy(shot, 0.3f);
     }
 
     void DLC()
