@@ -89,9 +89,9 @@ public class Player2Controller : BasePlayerController
         gameObject.transform.position = Telepoint.position;
         yield return new WaitForSeconds(teleportTime);
         telePart.Stop();
-        rig.gravityScale = 1;
         visuals.enabled = true;
         hitbox.enabled = true;
+        rig.gravityScale = 1;
     }
     void LootBoxStorm()
     {

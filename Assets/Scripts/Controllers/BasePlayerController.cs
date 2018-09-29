@@ -11,6 +11,7 @@ public abstract class BasePlayerController : MonoBehaviour
     private bool grounded;
     public Collider2D feetTrigger;
     public Rigidbody2D rig;
+    public CapsuleCollider2D hitTrigger;
 
     [SerializeField]
     private int health;
@@ -21,6 +22,7 @@ public abstract class BasePlayerController : MonoBehaviour
         public KeyCode left;
         public KeyCode right;
         public KeyCode jump;
+        public KeyCode punch;
     }
     public KeyConfig keyConfig;
 
@@ -104,6 +106,10 @@ public abstract class BasePlayerController : MonoBehaviour
             rig.AddForce(Vector2.up * jumpforce * MovementScale);
             grounded = false;
         }
+        if (Input.GetKeyDown(keyConfig.punch))
+        {
+            StartCoroutine(Punch());
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -141,5 +147,31 @@ public abstract class BasePlayerController : MonoBehaviour
     {
         // TODO: multiply by intensity
         rig.AddForce(dir);
+    }
+    bool punching = false;
+    float punchTime = 0.25f;
+    IEnumerator Punch()
+    {
+        punching = true;
+        //start animating
+        yield return new WaitForSeconds(punchTime);
+        punching = false;
+        Collider2D[] hits = Physics2D.OverlapCapsuleAll(hitTrigger.bounds.center, hitTrigger.bounds.size, CapsuleDirection2D.Horizontal, 0f);
+        foreach (Collider2D c in hits)
+        {
+            if (c.isTrigger == false)
+            {
+                BasePlayerController hitPlayer = c.GetComponent<BasePlayerController>();
+                if (hitPlayer != null && hitPlayer != this)
+                {
+                    Rigidbody2D rb = hitPlayer.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        rb.AddForce(transform.right * 3 + transform.up * 3, ForceMode2D.Impulse);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

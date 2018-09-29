@@ -38,15 +38,15 @@ public class Player1Controller : BasePlayerController
     {
         base.FixedUpdate();
 
-        if (Input.GetKeyDown(KeyCode.RightControl) && AbilityReady(Ability.Ananas))
+        if (Input.GetKeyDown(KeyCode.Keypad1) && AbilityReady(Ability.Ananas))
         {
             Ananas();
         }
-        if (Input.GetKeyDown(KeyCode.Minus) && AbilityReady(Ability.Dash))
+        if (Input.GetKeyDown(KeyCode.Keypad2) && AbilityReady(Ability.Dash))
         {
             Dash();
         }
-        if (Input.GetKeyDown(KeyCode.RightAlt) && AbilityReady(Ability.Grab))
+        if (Input.GetKeyDown(KeyCode.Keypad3) && AbilityReady(Ability.Grab))
         {
             StartCoroutine(Grab());
         }
@@ -97,6 +97,7 @@ public class Player1Controller : BasePlayerController
         //grabdash animation
         grabbing = true;
         yield return new WaitForSeconds(.5f);
+
         grabbing = false;
     }
     private void OnCollisionEnter2D(Collision2D collision)
