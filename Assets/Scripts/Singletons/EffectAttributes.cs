@@ -65,6 +65,7 @@ public class EffectAttributes : MonoBehaviour
         public AudioSource omae;
         public AudioSource nani;
         public AudioSource boom;
+        public GameObject explosionFX;
     }
     public ExplosionEffectAttr explosionAttributes;
 
