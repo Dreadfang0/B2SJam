@@ -60,7 +60,12 @@ public abstract class BasePlayerController : MonoBehaviour
 
     public bool AbilityReady<T>(T ability)
     {
-        return cooldowns[(int)(object)ability] <= 0f;
+        return GetRemainingCooldown(ability) <= 0f;
+    }
+
+    public float GetRemainingCooldown<T>(T ability)
+    {
+        return cooldowns[(int)(object)ability];
     }
 
     protected virtual void Update()
