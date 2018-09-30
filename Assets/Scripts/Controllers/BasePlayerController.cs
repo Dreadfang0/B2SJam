@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class BasePlayerController : MonoBehaviour
 {
+    // Audio
+    public AudioClip[] punchSounds;
+    public AudioClip[] painSounds;
+    public AudioClip[] deathSounds;
+
+    // Phys
     public float speed;
     public float maxSpeed;
     public float jumpforce;
@@ -140,6 +146,26 @@ public abstract class BasePlayerController : MonoBehaviour
             
             rig.constraints = frozen ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.FreezeRotation;
         }
+    }
+
+    public void PlayPunchSound()
+    {
+
+    }
+
+    public void PlayPainSound()
+    {
+
+    }
+
+    public void PlayDeathSound()
+    {
+
+    }
+
+    private AudioClip SelectClip(AudioClip[] clips)
+    {
+        return clips[Random.Range(0, clips.Length)];
     }
 
     // Dir is not normalized

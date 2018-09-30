@@ -9,12 +9,20 @@ public class LootBoxController : MonoBehaviour
         BasePlayerController player = col.GetComponent<BasePlayerController>();
         if (player != null)
         {
-            OnPickup(player);
+            StartCoroutine(OnPickup(player));
         }
     }
-    private void OnPickup(BasePlayerController player)
+
+    private IEnumerator OnPickup(BasePlayerController player)
     {
         EffectState.instance.Trigger(player);
+
+        var sound = GetComponent<AudioSource>();
+
+        GetComponent<SpriteRenderer>().enabled = false;
+        sound.Play();
+
+        yield return new WaitForSeconds(sound.clip.length);
 
         // TODO: play animation?
 
