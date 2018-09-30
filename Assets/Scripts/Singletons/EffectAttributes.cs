@@ -145,4 +145,18 @@ public class EffectAttributes : MonoBehaviour
         public AudioSource sound;
     }
     public FullLife3Attributes fullLife3Attributes;
+
+    // ******************************************* //
+
+    [System.Serializable]
+    public class SizeAlterAttributes
+    {
+        public float minDuration;
+        public float maxDuration;
+
+        public float scale;
+
+        public AudioSource sound;
+    }
+    public SizeAlterAttributes sizeAlterAttributes;
 }

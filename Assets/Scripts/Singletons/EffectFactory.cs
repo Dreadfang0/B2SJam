@@ -10,6 +10,7 @@ public enum EffectType
     Throw,
     Explosion,
     FullLife3,
+    SizeAlter,
 
     // Env
     Gravity,
@@ -41,6 +42,9 @@ public class EffectFactory
 
             case EffectType.FullLife3:
                 return new FullLife3Effect();
+
+            case EffectType.SizeAlter:
+                return new SizeAlterEffect();
 
             case EffectType.Gravity:
                 return new GravityEffect();
