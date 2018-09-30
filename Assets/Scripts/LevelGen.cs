@@ -14,6 +14,8 @@ public class LevelGen : MonoBehaviour {
     public LootBoxController lootBox;
     GameObject lastBackground;
     public float lootBoxChance = 0.3f;//chance to spawn lootbox when spawning a new tile
+    public GameObject[] deadStudios;
+    public float deadStudioChance = 0.5f;
 	// Use this for initialization
 	void Awake () {
         backgrounds = new List<GameObject>();
@@ -53,6 +55,7 @@ public class LevelGen : MonoBehaviour {
         lastTile = newTile;
         CheckForTrash();
         SpawnLootBox();
+        SpawnDeadStudio();
     }
     void CheckForTrash() {
         //check from oldest until not far enough for destruction
@@ -86,12 +89,28 @@ public class LevelGen : MonoBehaviour {
                 RaycastHit2D ray = Physics2D.Raycast(rayStartPos, Vector2.down, spawnAhead);
                 if (ray.collider != null && ray.collider.tag == "ground")
                 {
-                    GameObject newBox = Instantiate(lootBox.gameObject, ray.point + 0.5f * Vector2.up, Quaternion.identity);
+                    GameObject newBox = Instantiate(lootBox.gameObject, ray.point + 0.4f * Vector2.up, Quaternion.identity);
                     newBox.transform.parent = lastTile.transform;
                     break;
                 }
             }
         }
         
+    }
+    void SpawnDeadStudio() {
+        if (Random.Range(0f,1f) <= deadStudioChance)
+        {
+            int deadIndex = Random.Range(0,deadStudios.Length);
+            GameObject newDead = Instantiate(deadStudios[deadIndex], lastTile.transform.position, Quaternion.identity);
+            float tileWidth = lastTile.transform.localScale.x / 2;
+            newDead.transform.position += Vector3.right * Random.Range(-tileWidth,tileWidth);
+            Rigidbody2D rb = newDead.GetComponent<Rigidbody2D>();
+            float maxSpin = 500f;
+            rb.angularVelocity = Random.Range(-maxSpin,maxSpin);
+            rb.gravityScale = 0.2f;
+            //Vector2 randomVelociy = Vector2.right * Random.Range(-2f,2f);
+            //rb.velocity = randomVelociy;
+            rb.drag = .2f;
+        }
     }
 }
