@@ -13,7 +13,7 @@ public class LevelGen : MonoBehaviour {
     List<GameObject> backgrounds;
     public LootBoxController lootBox;
     GameObject lastBackground;
-    public float lootBoxChance = 0.3f;//chance to spawn lootbox when spawning a new tile
+    public float lootBoxRate; // How many loot boxes per block?
     public GameObject[] deadStudios;
     public float deadStudioChance = 0.5f;
 	// Use this for initialization
@@ -81,7 +81,8 @@ public class LevelGen : MonoBehaviour {
     void SpawnLootBox() {
         float tileWidth = lastTile.transform.localScale.x / 2f;
         int maxTries = 20;
-        if (Random.Range(0f,1f) <= lootBoxChance)
+
+        for (var j = 0; j < lootBoxRate; ++j)
         {
             for (int i = 0; i < maxTries; i++)
             {
