@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PayWallEffect : Effect
@@ -20,29 +21,29 @@ public class PayWallEffect : Effect
     {
         var attr = EffectAttributes.instance.payWallAttributes;
 
-        attr.sound.Play();
-
         player.Frozen = player.FindOpponent().Frozen = true;
 
-        var obj = GameObject.Instantiate(attr.prefab, player.transform);
-        var text = obj.GetComponent<TextMesh>();
+        var obj = GameObject.Instantiate(attr.prefab, GameObject.Find("Canvas").transform);
+        var sprite = obj.GetComponent<Image>();
 
-        for (var color = text.color; color.a < 1f; color.a += attr.fadeRate)
+        for (var color = sprite.color; color.a < 1f; color.a += attr.fadeRate)
         {
-            text.color = color;
+            sprite.color = color;
             yield return null;
         }
 
         var min = attr.minDuration;
         var max = attr.maxDuration;
 
+        attr.sound.Play();
+
         yield return new WaitForSeconds(min + (max - min) * EffectState.instance.CurrentIntensity);
 
         player.Frozen = player.FindOpponent().Frozen = false;
 
-        for (var color = text.color; color.a > 0f; color.a -= attr.fadeRate)
+        for (var color = sprite.color; color.a > 0f; color.a -= attr.fadeRate)
         {
-            text.color = color;
+            sprite.color = color;
             yield return null;
         }
 
