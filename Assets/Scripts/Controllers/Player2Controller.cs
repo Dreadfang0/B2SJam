@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player2Controller : BasePlayerController
-{    
+{
+    public AudioClip teleportBeginSound;
+    public AudioClip teleportEndSound;
+
+    public AudioClip miniLootboxSound;
+
+    public AudioClip gunSound;
+
     // Gun ability stuff
     public Transform gunpoint;
     public GameObject bullet;
@@ -69,6 +76,8 @@ public class Player2Controller : BasePlayerController
 
     void Gun()
     {
+        StartCoroutine(PlaySound(gunSound));
+
         SetAbilityCooldown(Ability.Gun, gunCooldown);
         anim.SetInteger("AnimParameter", 4);
         var shot = (GameObject)Instantiate(bullet, gunpoint.position, gunpoint.rotation);
@@ -83,7 +92,8 @@ public class Player2Controller : BasePlayerController
     }
     IEnumerator teleTime()
     {
-        
+        StartCoroutine(PlaySound(teleportBeginSound));
+
         anim.SetInteger("AnimParameter", 5);
         yield return new WaitForSeconds(teleportTime);
         visuals.enabled = false;
@@ -93,6 +103,7 @@ public class Player2Controller : BasePlayerController
         yield return new WaitForSeconds(teleportTime);
         gameObject.transform.position = Telepoint.position;
         yield return new WaitForSeconds(teleportTime);
+        StartCoroutine(PlaySound(teleportEndSound));
         telePart.Stop();
         visuals.enabled = true;
         hitbox.enabled = true;
@@ -124,6 +135,7 @@ public class Player2Controller : BasePlayerController
             var shot = (GameObject)Instantiate(minilootbox, gunpoint.position, Quaternion.Euler(0, 0, transform.eulerAngles.z + Random.Range(minimumShootAngle, maximumShootAngle))) as GameObject;
             Vector3 direction = minilootbox.transform.rotation * transform.right;
 
+            StartCoroutine(PlaySound(miniLootboxSound));
 
             shot.GetComponent<Rigidbody2D>().AddRelativeForce(direction * 2000);
 

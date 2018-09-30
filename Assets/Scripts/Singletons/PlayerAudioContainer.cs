@@ -17,4 +17,6 @@ public class PlayerAudioContainer : MonoBehaviour
     public AudioClip[] painSounds;
     public AudioClip[] punchSounds;
     public AudioClip[] deathSounds;
+    public AudioClip jumpSound;
+    public AudioClip runSound;
 }

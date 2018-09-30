@@ -17,6 +17,10 @@ public class RangeExplosion : MonoBehaviour {
 
     IEnumerator Explode() {
         yield return new WaitForSeconds(delay);
+
+        var player = GameObject.FindObjectOfType<Player1Controller>();
+        player.StartCoroutine(player.PlaySound(player.boomSound));
+
         List<Rigidbody2D> rbs = new List<Rigidbody2D>();
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, range);
         foreach (Collider2D c in cols)

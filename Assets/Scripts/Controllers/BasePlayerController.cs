@@ -87,8 +87,10 @@ public abstract class BasePlayerController : MonoBehaviour
             rig.velocity = rig.velocity.normalized * maxSpeed;
         }
 
-        //var walkSound = GetComponent<AudioSource>();
-        //walkSound.Pause();
+        var sound = transform.Find("WalkJumpSound").GetComponent<AudioSource>();
+
+        if (grounded)
+            sound.Pause();
 
         if (Input.GetKey(keyConfig.right))
         {
@@ -99,8 +101,11 @@ public abstract class BasePlayerController : MonoBehaviour
             rig.AddForce(Vector2.right * speed * MovementScale);
             facingRight = true;
 
-            //if (grounded)
-                //walkSound.Play();
+            if (grounded)
+            {
+                sound.clip = PlayerAudioContainer.instance.runSound;
+                sound.Play();
+            }
         }
         if (Input.GetKey(keyConfig.left))
         {
@@ -113,8 +118,11 @@ public abstract class BasePlayerController : MonoBehaviour
             rig.AddForce(Vector2.right * -speed * MovementScale);
             facingRight = false;
 
-            //if (grounded)
-                //walkSound.Play();
+            if (grounded)
+            {
+                sound.clip = PlayerAudioContainer.instance.runSound;
+                sound.Play();
+            }
         }
         if (rig.velocity.magnitude == 0f && grounded)
         {
@@ -126,7 +134,8 @@ public abstract class BasePlayerController : MonoBehaviour
             rig.AddForce(Vector2.up * jumpforce * MovementScale);
             grounded = false;
 
-            //transform.Find("jumpSound").GetComponent<AudioSource>().Play();
+            sound.clip = PlayerAudioContainer.instance.jumpSound;
+            sound.Play();
         }
         if (Input.GetKeyDown(keyConfig.punch))
         {
@@ -180,7 +189,7 @@ public abstract class BasePlayerController : MonoBehaviour
         StartCoroutine(PlaySound(SelectClip(PlayerAudioContainer.instance.deathSounds)));
     }
 
-    private IEnumerator PlaySound(AudioClip clip, float delay = 0f)
+    public IEnumerator PlaySound(AudioClip clip, float delay = 0f)
     {
         yield return new WaitForSeconds(delay);
 

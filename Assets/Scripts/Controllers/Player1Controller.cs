@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Player1Controller : BasePlayerController
 {
+    // Audio
+    public AudioClip dashSound1;
+    public AudioClip dashSound2;
+
+    public AudioClip throwSound;
+    public AudioClip boomSound;
+
     // Gun ability stuff
     public Transform gunpoint;
     public GameObject ananas;
@@ -71,6 +78,8 @@ public class Player1Controller : BasePlayerController
     }*/
     void Ananas()
     {
+        StartCoroutine(PlaySound(throwSound));
+
         anim.SetInteger("AnimParameter", 4);
         SetAbilityCooldown(Ability.Ananas, ananasCooldown);
         GameObject shot = Instantiate(ananas, gunpoint.position,Quaternion.identity);
@@ -90,6 +99,7 @@ public class Player1Controller : BasePlayerController
     }
     void Dash()
     {
+        StartCoroutine(PlaySound(dashSound1));
         SetAbilityCooldown(Ability.Dash,dashCooldown);
         anim.SetInteger("AnimParameter", 5);
         rig.AddForce(transform.right * 500f);
@@ -97,6 +107,7 @@ public class Player1Controller : BasePlayerController
     }
     IEnumerator Grab()
     {
+        StartCoroutine(PlaySound(dashSound2));
         rig.AddForce(transform.right * 500f);
         //grabdash animation
         anim.SetInteger("AnimParameter", 6);
@@ -112,6 +123,8 @@ public class Player1Controller : BasePlayerController
                 Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
+
+                    PlayPunchSound();
                     //rb.AddForce(transform.right * 10f + transform.up * 30f,ForceMode2D.Impulse);
                     rb.AddForce(transform.right * punchVector.x + transform.up * punchVector.y, ForceMode2D.Impulse);
                     //sound effect & animation for punch
