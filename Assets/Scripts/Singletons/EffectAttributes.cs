@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class EffectAttributes : MonoBehaviour
@@ -26,6 +27,10 @@ public class EffectAttributes : MonoBehaviour
         public float probability;
     }
     public Probability[] probabilities;
+
+    public float effectImageFadeRate;
+    public float effectImageDuration;
+    public Sprite[] effectImages;
 
     // ******************************************* //
 

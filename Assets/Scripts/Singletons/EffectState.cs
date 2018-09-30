@@ -78,13 +78,12 @@ public class EffectState : MonoBehaviour
     }
 
     // Trigger a random effect
-    public void Trigger(BasePlayerController player)
+    public EffectType Trigger(BasePlayerController player)
     {
-        Trigger(
-            effectTypeOverride != EffectType.__Count ?
-                effectTypeOverride :
-                (EffectType)Random.Range(0, (int)EffectType.__Count),
-            player
-        );
+        var type = effectTypeOverride != EffectType.__Count ? effectTypeOverride : (EffectType)Random.Range(0, (int)EffectType.__Count);
+
+        Trigger(type, player);
+
+        return type;
     }
 }
