@@ -11,6 +11,7 @@ public enum EffectType
     Explosion,
     FullLife3,
     SizeAlter,
+    PayWall,
 
     // Env
     Gravity,
@@ -45,6 +46,9 @@ public class EffectFactory
 
             case EffectType.SizeAlter:
                 return new SizeAlterEffect();
+
+            case EffectType.PayWall:
+                return new PayWallEffect();
 
             case EffectType.Gravity:
                 return new GravityEffect();
