@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class BasePlayerController : MonoBehaviour
 {
+    // Audio
+    public AudioClip[] punchSounds;
+    public AudioClip[] painSounds;
+    public AudioClip[] deathSounds;
+
+    // Phys
     public float speed;
     public float maxSpeed;
     public float jumpforce;
@@ -153,15 +159,49 @@ public abstract class BasePlayerController : MonoBehaviour
         }
     }
 
+    public void PlayPunchSound()
+    {
+        StartCoroutine(PlaySound(SelectClip(punchSounds)));
+    }
+
+    public void PlayPainSound()
+    {
+        StartCoroutine(PlaySound(SelectClip(painSounds)));
+    }
+
+    public void PlayDeathSound()
+    {
+        StartCoroutine(PlaySound(SelectClip(deathSounds)));
+    }
+
+    private IEnumerator PlaySound(AudioClip clip)
+    {
+        var source = gameObject.AddComponent<AudioSource>();
+        source.clip = clip;
+        source.pitch = Time.timeScale;
+        source.playOnAwake = true;
+
+        yield return new WaitForSeconds(clip.length);
+
+        Destroy(source);
+    }
+
+    private AudioClip SelectClip(AudioClip[] clips)
+    {
+        return clips[Random.Range(0, clips.Length)];
+    }
+
     // Dir is not normalized
     public virtual void Push(Vector2 dir)
     {
-        // TODO: multiply by intensity
         rig.AddForce(dir);
     }
+
     float punchTime = 0.25f;
     IEnumerator Punch()
     {
+        PlayPunchSound();
+
         //start animating
         anim.SetInteger("AnimParameter", 3);
         yield return new WaitForSeconds(punchTime);
