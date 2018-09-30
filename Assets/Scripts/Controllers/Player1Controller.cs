@@ -73,7 +73,7 @@ public class Player1Controller : BasePlayerController
     {
         anim.SetInteger("AnimParameter", 4);
         SetAbilityCooldown(Ability.Ananas, ananasCooldown);
-        GameObject shot = Instantiate(ananas, transform.position + transform.right,Quaternion.identity);
+        GameObject shot = Instantiate(ananas, gunpoint.position,Quaternion.identity);
         Rigidbody2D shotRb = shot.GetComponent<Rigidbody2D>();
         shotRb.velocity = transform.right * 1f + transform.right * Mathf.Abs(rig.velocity.x) + transform.up * 3f;
         shotRb.angularVelocity = -500f * Direction;
