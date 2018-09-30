@@ -18,7 +18,7 @@ public abstract class BasePlayerController : MonoBehaviour
     public Collider2D feetTrigger;
     public Rigidbody2D rig;
     public CapsuleCollider2D hitTrigger;
-
+    public Animator anim;
     [SerializeField]
     private int health;
 
@@ -95,8 +95,9 @@ public abstract class BasePlayerController : MonoBehaviour
         if (Input.GetKey(keyConfig.right))
         {
             transform.rotation = Quaternion.Euler(0f,0f,0f);
+            if (grounded == true)
+                anim.SetInteger("AnimParameter", 1);
 
-            
             rig.AddForce(Vector2.right * speed * MovementScale);
             facingRight = true;
         }
@@ -104,11 +105,20 @@ public abstract class BasePlayerController : MonoBehaviour
         {
             //transform.Rotate(Vector3.right * 180);
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+
+            if(grounded == true)
+                anim.SetInteger("AnimParameter", 1);
+
             rig.AddForce(Vector2.right * -speed * MovementScale);
             facingRight = false;
         }
+        if (rig.velocity.magnitude == 0f && grounded)
+        {
+            anim.SetInteger("AnimParameter", 0);
+        }
         if (Input.GetKeyDown(keyConfig.jump) && grounded == true)
         {
+            anim.SetInteger("AnimParameter", 2);
             rig.AddForce(Vector2.up * jumpforce * MovementScale);
             grounded = false;
         }
@@ -116,6 +126,7 @@ public abstract class BasePlayerController : MonoBehaviour
         {
             StartCoroutine(Punch());
         }
+        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -194,6 +205,7 @@ public abstract class BasePlayerController : MonoBehaviour
     {
 
         //start animating
+        anim.SetInteger("AnimParameter", 3);
         yield return new WaitForSeconds(punchTime);
         PlayPunchSound();
         Collider2D[] hits = Physics2D.OverlapCapsuleAll(hitTrigger.bounds.center, hitTrigger.bounds.size, CapsuleDirection2D.Horizontal, 0f);
