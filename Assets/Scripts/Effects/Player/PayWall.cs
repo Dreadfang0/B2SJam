@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FullLife3Effect : Effect
+public class PayWallEffect : Effect
 {
     private bool ended = false;
 
@@ -18,30 +18,26 @@ public class FullLife3Effect : Effect
 
     private IEnumerator HandleDuration(BasePlayerController player)
     {
-        var attr = EffectAttributes.instance.fullLife3Attributes;
+        var attr = EffectAttributes.instance.payWallAttributes;
 
         attr.sound.Play();
 
         var obj = GameObject.Instantiate(attr.prefab, player.transform);
-        var sprite = obj.GetComponent<SpriteRenderer>();
+        var text = obj.GetComponent<TextMesh>();
 
-        for (var color = sprite.color; color.a < 1f; color.a += attr.fadeRate)
+        for (var color = text.color; color.a < 1f; color.a += attr.fadeRate)
         {
-            attr.sound.volume = color.a;
-            sprite.color = color;
+            text.color = color;
             yield return null;
         }
 
         yield return new WaitForSeconds(attr.visibleFor);
 
-        for (var color = sprite.color; color.a > 0f; color.a -= attr.fadeRate)
+        for (var color = text.color; color.a > 0f; color.a -= attr.fadeRate)
         {
-            attr.sound.volume = color.a;
-            sprite.color = color;
+            text.color = color;
             yield return null;
         }
-
-        attr.sound.Stop();
 
         GameObject.Destroy(obj);
 

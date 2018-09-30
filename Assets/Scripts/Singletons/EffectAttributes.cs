@@ -19,6 +19,14 @@ public class EffectAttributes : MonoBehaviour
         freezeAttributes.maxDuration = Mathf.Max(0f, freezeAttributes.maxDuration);
     }
 
+    [System.Serializable]
+    public class Probability
+    {
+        public EffectType type;
+        public float probability;
+    }
+    public Probability[] probabilities;
+
     // ******************************************* //
 
     [System.Serializable]
@@ -139,6 +147,7 @@ public class EffectAttributes : MonoBehaviour
     public class FullLife3Attributes
     {
         public float visibleFor;
+        public float fadeRate;
 
         public GameObject prefab;
 
@@ -159,4 +168,18 @@ public class EffectAttributes : MonoBehaviour
         public AudioSource sound;
     }
     public SizeAlterAttributes sizeAlterAttributes;
+
+    // ******************************************* //
+
+    [System.Serializable]
+    public class PayWallAttributes
+    {
+        public float visibleFor;
+        public float fadeRate;
+
+        public GameObject prefab;
+
+        public AudioSource sound;
+    }
+    public PayWallAttributes payWallAttributes;
 }
