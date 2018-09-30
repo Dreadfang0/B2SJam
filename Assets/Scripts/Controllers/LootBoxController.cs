@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class LootBoxController : MonoBehaviour
 {
+    bool triggered = false;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         BasePlayerController player = col.GetComponent<BasePlayerController>();
-        if (player != null)
+        if (player != null && !triggered)
         {
+            triggered = true;
             StartCoroutine(OnPickup(player));
         }
     }

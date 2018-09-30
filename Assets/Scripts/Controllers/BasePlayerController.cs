@@ -153,9 +153,9 @@ public abstract class BasePlayerController : MonoBehaviour
         StartCoroutine(PlaySound(SelectClip(punchSounds)));
     }
 
-    public void PlayPainSound()
+    public void PlayPainSound(float delay = 0f)
     {
-        StartCoroutine(PlaySound(SelectClip(painSounds)));
+        StartCoroutine(PlaySound(SelectClip(painSounds), delay));
     }
 
     public void PlayDeathSound()
@@ -163,12 +163,15 @@ public abstract class BasePlayerController : MonoBehaviour
         StartCoroutine(PlaySound(SelectClip(deathSounds)));
     }
 
-    private IEnumerator PlaySound(AudioClip clip)
+    private IEnumerator PlaySound(AudioClip clip, float delay = 0f)
     {
+        yield return new WaitForSeconds(delay);
+
         var source = gameObject.AddComponent<AudioSource>();
         source.clip = clip;
         source.pitch = Time.timeScale;
-        source.playOnAwake = true;
+        source.Play();
+        source.loop = false;
 
         yield return new WaitForSeconds(clip.length);
 
@@ -189,10 +192,10 @@ public abstract class BasePlayerController : MonoBehaviour
     float punchTime = 0.25f;
     IEnumerator Punch()
     {
-        PlayPunchSound();
 
         //start animating
         yield return new WaitForSeconds(punchTime);
+        PlayPunchSound();
         Collider2D[] hits = Physics2D.OverlapCapsuleAll(hitTrigger.bounds.center, hitTrigger.bounds.size, CapsuleDirection2D.Horizontal, 0f);
         foreach (Collider2D c in hits)
         {
@@ -205,6 +208,9 @@ public abstract class BasePlayerController : MonoBehaviour
                     if (rb != null)
                     {
                         rb.AddForce(transform.right * 3 + transform.up * 3, ForceMode2D.Impulse);
+
+                        hitPlayer.PlayPainSound(0.3f);
+
                         break;
                     }
                 }
