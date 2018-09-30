@@ -12,7 +12,7 @@ public class Player2Controller : BasePlayerController
     public Transform Telepoint;
     public float teleportTime;
     public CapsuleCollider2D hitbox;
-    public MeshRenderer visuals; // <-- Replace meshrenderer with Sprite renderer when art is gotten
+    public SpriteRenderer visuals; // <-- Replace meshrenderer with Sprite renderer when art is gotten
     public ParticleSystem telePart; // <-- make a fancy particle effect to be activated during teleportation sequence
     // Lootbox Storm ability stuff (use gunpoint to shoot the stuff)
     public GameObject minilootbox;
@@ -43,6 +43,7 @@ public class Player2Controller : BasePlayerController
     }
     private void Start()
     {
+        anim.SetInteger("player", 2);
         telePart.Stop();
     }
     protected override void FixedUpdate ()
@@ -69,6 +70,7 @@ public class Player2Controller : BasePlayerController
     void Gun()
     {
         SetAbilityCooldown(Ability.Gun, gunCooldown);
+        anim.SetInteger("AnimParameter", 4);
         var shot = (GameObject)Instantiate(bullet, gunpoint.position, gunpoint.rotation);
         shot.GetComponent<Rigidbody2D>().velocity = gunpoint.transform.right * 15 * Mathf.Sign(gunpoint.transform.localPosition.x);
         Destroy(shot, 0.3f);
@@ -81,6 +83,9 @@ public class Player2Controller : BasePlayerController
     }
     IEnumerator teleTime()
     {
+        
+        anim.SetInteger("AnimParameter", 5);
+        yield return new WaitForSeconds(teleportTime);
         visuals.enabled = false;
         hitbox.enabled = false;
         rig.gravityScale = 0;
@@ -114,6 +119,7 @@ public class Player2Controller : BasePlayerController
     {
         for (int i = 0; i < 10; i++)
         {
+            anim.SetInteger("AnimParameter", 6);
             yield return new WaitForSeconds(0.1f);
             var shot = (GameObject)Instantiate(minilootbox, gunpoint.position, Quaternion.Euler(0, 0, transform.eulerAngles.z + Random.Range(minimumShootAngle, maximumShootAngle))) as GameObject;
             Vector3 direction = minilootbox.transform.rotation * transform.right;

@@ -32,7 +32,10 @@ public class Player1Controller : BasePlayerController
             // Handle death here?
         }
     }
-
+    private void Start()
+    {
+        anim.SetInteger("player", 1);
+    }
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -68,6 +71,7 @@ public class Player1Controller : BasePlayerController
     }*/
     void Ananas()
     {
+        anim.SetInteger("AnimParameter", 4);
         SetAbilityCooldown(Ability.Ananas, ananasCooldown);
         GameObject shot = Instantiate(ananas, transform.position + transform.right,Quaternion.identity);
         Rigidbody2D shotRb = shot.GetComponent<Rigidbody2D>();
@@ -87,6 +91,7 @@ public class Player1Controller : BasePlayerController
     void Dash()
     {
         SetAbilityCooldown(Ability.Dash,dashCooldown);
+        anim.SetInteger("AnimParameter", 5);
         rig.AddForce(transform.right * 500f);
         //animation
     }
@@ -94,6 +99,7 @@ public class Player1Controller : BasePlayerController
     {
         rig.AddForce(transform.right * 500f);
         //grabdash animation
+        anim.SetInteger("AnimParameter", 6);
         grabbing = true;
         yield return new WaitForSeconds(.5f);
 
