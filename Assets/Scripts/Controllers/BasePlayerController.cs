@@ -92,6 +92,9 @@ public abstract class BasePlayerController : MonoBehaviour
             rig.velocity = rig.velocity.normalized * maxSpeed;
         }
 
+        var walkSound = GetComponent<AudioSource>();
+        walkSound.Pause();
+
         if (Input.GetKey(keyConfig.right))
         {
             transform.rotation = Quaternion.Euler(0f,0f,0f);
@@ -100,6 +103,9 @@ public abstract class BasePlayerController : MonoBehaviour
 
             rig.AddForce(Vector2.right * speed * MovementScale);
             facingRight = true;
+
+            if (grounded)
+                walkSound.Play();
         }
         if (Input.GetKey(keyConfig.left))
         {
@@ -111,6 +117,9 @@ public abstract class BasePlayerController : MonoBehaviour
 
             rig.AddForce(Vector2.right * -speed * MovementScale);
             facingRight = false;
+
+            if (grounded)
+                walkSound.Play();
         }
         if (rig.velocity.magnitude == 0f && grounded)
         {
@@ -121,6 +130,8 @@ public abstract class BasePlayerController : MonoBehaviour
             anim.SetInteger("AnimParameter", 2);
             rig.AddForce(Vector2.up * jumpforce * MovementScale);
             grounded = false;
+
+            transform.Find("jumpSound").GetComponent<AudioSource>().Play();
         }
         if (Input.GetKeyDown(keyConfig.punch))
         {
