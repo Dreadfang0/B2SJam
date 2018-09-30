@@ -30,6 +30,8 @@ public class Player2Controller : BasePlayerController
     public float lootboxstormCooldown;
     public float dlcCooldown;
 
+    public KeyCode[] abilityKeys;
+
     private enum Ability
     {
         Gun,
@@ -57,17 +59,17 @@ public class Player2Controller : BasePlayerController
     {
         base.FixedUpdate();
    
-        if (Input.GetKeyDown(KeyCode.Alpha1) && AbilityReady(Ability.Gun))
+        if (Input.GetKeyDown(abilityKeys[0]) && AbilityReady(Ability.Gun))
         {
             Gun();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && AbilityReady(Ability.Dlc))
+        if (Input.GetKeyDown(abilityKeys[1]) && AbilityReady(Ability.Dlc))
         {
             StartCoroutine(teleTime());
             SetAbilityCooldown(Ability.Dlc, dlcCooldown);
 
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && AbilityReady(Ability.Storm))
+        if (Input.GetKeyDown(abilityKeys[2]) && AbilityReady(Ability.Storm))
         {
             StartCoroutine(storm());
             SetAbilityCooldown(Ability.Storm, lootboxstormCooldown);

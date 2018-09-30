@@ -21,6 +21,7 @@ public class Player1Controller : BasePlayerController
     public float grabCooldown;
     bool grabbing = false;
     public Vector3 punchVector;
+    public KeyCode[] abilityKeys;
     private enum Ability
     {
         Ananas,
@@ -47,15 +48,15 @@ public class Player1Controller : BasePlayerController
     {
         base.FixedUpdate();
 
-        if (Input.GetKeyDown(KeyCode.Keypad1) && AbilityReady(Ability.Ananas))
+        if (Input.GetKeyDown(abilityKeys[0]) && AbilityReady(Ability.Ananas))
         {
             Ananas();
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2) && AbilityReady(Ability.Dash))
+        if (Input.GetKeyDown(abilityKeys[1]) && AbilityReady(Ability.Dash))
         {
             Dash();
         }
-        if (Input.GetKeyDown(KeyCode.Keypad3) && AbilityReady(Ability.Grab))
+        if (Input.GetKeyDown(abilityKeys[2]) && AbilityReady(Ability.Grab))
         {
             StartCoroutine(Grab());
         }
