@@ -4,11 +4,6 @@ using UnityEngine;
 
 public abstract class BasePlayerController : MonoBehaviour
 {
-    // Audio
-    public AudioClip[] punchSounds;
-    public AudioClip[] painSounds;
-    public AudioClip[] deathSounds;
-
     // Phys
     public float speed;
     public float maxSpeed;
@@ -172,17 +167,17 @@ public abstract class BasePlayerController : MonoBehaviour
 
     public void PlayPunchSound()
     {
-        StartCoroutine(PlaySound(SelectClip(punchSounds)));
+        StartCoroutine(PlaySound(SelectClip(PlayerAudioContainer.instance.punchSounds)));
     }
 
     public void PlayPainSound(float delay = 0f)
     {
-        StartCoroutine(PlaySound(SelectClip(painSounds), delay));
+        StartCoroutine(PlaySound(SelectClip(PlayerAudioContainer.instance.painSounds), delay));
     }
 
     public void PlayDeathSound()
     {
-        StartCoroutine(PlaySound(SelectClip(deathSounds)));
+        StartCoroutine(PlaySound(SelectClip(PlayerAudioContainer.instance.deathSounds)));
     }
 
     private IEnumerator PlaySound(AudioClip clip, float delay = 0f)
