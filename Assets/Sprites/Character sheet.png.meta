@@ -1,41 +1,41 @@
 fileFormatVersion: 2
 guid: 60a1e0c856220dc43b75d8e0ce73edb1
-timeCreated: 1538251020
+timeCreated: 1538292867
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Character sheet_0
-    21300002: Character sheet_1
-    21300004: Character sheet_2
-    21300006: Character sheet_3
-    21300008: Character sheet_4
-    21300010: Character sheet_5
-    21300012: Character sheet_6
-    21300014: Character sheet_7
-    21300016: Character sheet_8
-    21300018: Character sheet_9
-    21300020: Character sheet_10
-    21300022: Character sheet_11
-    21300024: Character sheet_12
-    21300026: Character sheet_13
-    21300028: Character sheet_14
-    21300030: Character sheet_15
-    21300032: Character sheet_16
-    21300034: Character sheet_17
-    21300036: Character sheet_18
-    21300038: Character sheet_19
-    21300040: Character sheet_20
-    21300042: Character sheet_21
-    21300044: Character sheet_22
-    21300046: Character sheet_23
-    21300048: Character sheet_24
-    21300050: Character sheet_25
-    21300052: Character sheet_26
-    21300054: Character sheet_27
-    21300056: Character sheet_28
-    21300058: Character sheet_29
-    21300060: Character sheet_30
-    21300062: Character sheet_31
+    21300000: Character sheet_JJidle
+    21300002: Character sheet_JJwalk
+    21300004: Character sheet_JJrun1
+    21300006: Character sheet_JJrun2
+    21300008: Character sheet_JJrun3
+    21300010: Character sheet_JJrun4
+    21300012: Character sheet_JJjump1
+    21300014: Character sheet_JJjump2
+    21300016: Character sheet_JJgrab3
+    21300018: Character sheetJJpunch1
+    21300020: Character sheet_JJpunch2
+    21300022: Character sheet_JJpunch3
+    21300024: Character sheet_JJpineapple1
+    21300026: Character sheet_JJpineapple2
+    21300028: Character sheet_JJgrab1
+    21300030: Character sheet_JJgrab2
+    21300032: Character sheet_EAvil_idle1
+    21300034: Character sheet_EAvilIdle2
+    21300036: Character sheet_EAvilrun1
+    21300038: Character sheet_EAvilrun2
+    21300040: Character sheet_EAvilrun3
+    21300042: Character sheet_EAvilrun4
+    21300044: Character sheet_EAviljump1
+    21300046: Character sheet_EAviljump2
+    21300048: Character sheet_EAvilpunch1
+    21300050: Character sheet_EAvilpunch2
+    21300052: Character sheet_EAvilpunch3
+    21300054: Character sheet_EAvilgun
+    21300056: Character sheet_EAvilstorm1
+    21300058: Character sheet_EAvilstorm2
+    21300060: Character sheet_EAvildlc1
+    21300062: Character sheet_EAvildlc2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -158,7 +158,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character sheet_0
+      name: Character sheet_JJidle
       rect:
         serializedVersion: 2
         x: 135
@@ -166,12 +166,12 @@ TextureImporter:
         width: 281
         height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_1
+      name: Character sheet_JJwalk
       rect:
         serializedVersion: 2
         x: 493
@@ -179,38 +179,38 @@ TextureImporter:
         width: 276
         height: 649
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_2
+      name: Character sheet_JJrun1
       rect:
         serializedVersion: 2
         x: 805
         y: 3367
-        width: 372
+        width: 366
         height: 649
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_3
+      name: Character sheet_JJrun2
       rect:
         serializedVersion: 2
-        x: 1165
-        y: 3376
-        width: 443
-        height: 563
+        x: 1169
+        y: 3377
+        width: 435
+        height: 569
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_4
+      name: Character sheet_JJrun3
       rect:
         serializedVersion: 2
         x: 1696
@@ -218,12 +218,12 @@ TextureImporter:
         width: 297
         height: 596
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_5
+      name: Character sheet_JJrun4
       rect:
         serializedVersion: 2
         x: 2071
@@ -231,12 +231,12 @@ TextureImporter:
         width: 394
         height: 584
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_6
+      name: Character sheet_JJjump1
       rect:
         serializedVersion: 2
         x: 2509
@@ -244,12 +244,12 @@ TextureImporter:
         width: 372
         height: 585
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_7
+      name: Character sheet_JJjump2
       rect:
         serializedVersion: 2
         x: 2944
@@ -257,12 +257,12 @@ TextureImporter:
         width: 433
         height: 597
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_8
+      name: Character sheet_JJgrab3
       rect:
         serializedVersion: 2
         x: 3487
@@ -270,12 +270,12 @@ TextureImporter:
         width: 434
         height: 593
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_9
+      name: Character sheetJJpunch1
       rect:
         serializedVersion: 2
         x: 128
@@ -283,12 +283,12 @@ TextureImporter:
         width: 336
         height: 688
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_10
+      name: Character sheet_JJpunch2
       rect:
         serializedVersion: 2
         x: 525
@@ -296,12 +296,12 @@ TextureImporter:
         width: 468
         height: 604
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_11
+      name: Character sheet_JJpunch3
       rect:
         serializedVersion: 2
         x: 1005
@@ -309,12 +309,12 @@ TextureImporter:
         width: 478
         height: 633
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_12
+      name: Character sheet_JJpineapple1
       rect:
         serializedVersion: 2
         x: 1519
@@ -322,12 +322,12 @@ TextureImporter:
         width: 366
         height: 643
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_13
+      name: Character sheet_JJpineapple2
       rect:
         serializedVersion: 2
         x: 1935
@@ -335,12 +335,12 @@ TextureImporter:
         width: 422
         height: 642
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_14
+      name: Character sheet_JJgrab1
       rect:
         serializedVersion: 2
         x: 2445
@@ -348,12 +348,12 @@ TextureImporter:
         width: 621
         height: 441
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_15
+      name: Character sheet_JJgrab2
       rect:
         serializedVersion: 2
         x: 3187
@@ -361,12 +361,12 @@ TextureImporter:
         width: 709
         height: 448
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_16
+      name: Character sheet_EAvil_idle1
       rect:
         serializedVersion: 2
         x: 151
@@ -374,12 +374,12 @@ TextureImporter:
         width: 265
         height: 682
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_17
+      name: Character sheet_EAvilIdle2
       rect:
         serializedVersion: 2
         x: 615
@@ -387,12 +387,12 @@ TextureImporter:
         width: 260
         height: 694
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_18
+      name: Character sheet_EAvilrun1
       rect:
         serializedVersion: 2
         x: 1031
@@ -400,12 +400,12 @@ TextureImporter:
         width: 361
         height: 625
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_19
+      name: Character sheet_EAvilrun2
       rect:
         serializedVersion: 2
         x: 1407
@@ -413,12 +413,12 @@ TextureImporter:
         width: 428
         height: 560
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_20
+      name: Character sheet_EAvilrun3
       rect:
         serializedVersion: 2
         x: 2079
@@ -426,12 +426,12 @@ TextureImporter:
         width: 298
         height: 611
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_21
+      name: Character sheet_EAvilrun4
       rect:
         serializedVersion: 2
         x: 2517
@@ -439,12 +439,12 @@ TextureImporter:
         width: 395
         height: 588
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_22
+      name: Character sheet_EAviljump1
       rect:
         serializedVersion: 2
         x: 3037
@@ -452,12 +452,12 @@ TextureImporter:
         width: 372
         height: 588
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_23
+      name: Character sheet_EAviljump2
       rect:
         serializedVersion: 2
         x: 3535
@@ -465,12 +465,12 @@ TextureImporter:
         width: 425
         height: 639
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_24
+      name: Character sheet_EAvilpunch1
       rect:
         serializedVersion: 2
         x: 119
@@ -478,12 +478,12 @@ TextureImporter:
         width: 340
         height: 642
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_25
+      name: Character sheet_EAvilpunch2
       rect:
         serializedVersion: 2
         x: 573
@@ -491,12 +491,12 @@ TextureImporter:
         width: 492
         height: 627
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_26
+      name: Character sheet_EAvilpunch3
       rect:
         serializedVersion: 2
         x: 1111
@@ -504,12 +504,12 @@ TextureImporter:
         width: 530
         height: 673
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_27
+      name: Character sheet_EAvilgun
       rect:
         serializedVersion: 2
         x: 1717
@@ -517,12 +517,12 @@ TextureImporter:
         width: 436
         height: 700
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_28
+      name: Character sheet_EAvilstorm1
       rect:
         serializedVersion: 2
         x: 2128
@@ -530,12 +530,12 @@ TextureImporter:
         width: 392
         height: 708
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_29
+      name: Character sheet_EAvilstorm2
       rect:
         serializedVersion: 2
         x: 2584
@@ -543,12 +543,12 @@ TextureImporter:
         width: 456
         height: 685
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_30
+      name: Character sheet_EAvildlc1
       rect:
         serializedVersion: 2
         x: 3103
@@ -556,12 +556,12 @@ TextureImporter:
         width: 286
         height: 502
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Character sheet_31
+      name: Character sheet_EAvildlc2
       rect:
         serializedVersion: 2
         x: 3495
@@ -569,7 +569,7 @@ TextureImporter:
         width: 436
         height: 635
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
