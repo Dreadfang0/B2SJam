@@ -4,11 +4,6 @@ using UnityEngine;
 
 public abstract class BasePlayerController : MonoBehaviour
 {
-    // Audio
-    public AudioClip[] punchSounds;
-    public AudioClip[] painSounds;
-    public AudioClip[] deathSounds;
-
     // Phys
     public float speed;
     public float maxSpeed;
@@ -92,6 +87,9 @@ public abstract class BasePlayerController : MonoBehaviour
             rig.velocity = rig.velocity.normalized * maxSpeed;
         }
 
+        var walkSound = GetComponent<AudioSource>();
+        walkSound.Pause();
+
         if (Input.GetKey(keyConfig.right))
         {
             transform.rotation = Quaternion.Euler(0f,0f,0f);
@@ -100,6 +98,9 @@ public abstract class BasePlayerController : MonoBehaviour
 
             rig.AddForce(Vector2.right * speed * MovementScale);
             facingRight = true;
+
+            if (grounded)
+                walkSound.Play();
         }
         if (Input.GetKey(keyConfig.left))
         {
@@ -111,6 +112,9 @@ public abstract class BasePlayerController : MonoBehaviour
 
             rig.AddForce(Vector2.right * -speed * MovementScale);
             facingRight = false;
+
+            if (grounded)
+                walkSound.Play();
         }
         if (rig.velocity.magnitude == 0f && grounded)
         {
@@ -121,6 +125,8 @@ public abstract class BasePlayerController : MonoBehaviour
             anim.SetInteger("AnimParameter", 2);
             rig.AddForce(Vector2.up * jumpforce * MovementScale);
             grounded = false;
+
+            transform.Find("jumpSound").GetComponent<AudioSource>().Play();
         }
         if (Input.GetKeyDown(keyConfig.punch))
         {
@@ -161,17 +167,17 @@ public abstract class BasePlayerController : MonoBehaviour
 
     public void PlayPunchSound()
     {
-        StartCoroutine(PlaySound(SelectClip(punchSounds)));
+        StartCoroutine(PlaySound(SelectClip(PlayerAudioContainer.instance.punchSounds)));
     }
 
     public void PlayPainSound(float delay = 0f)
     {
-        StartCoroutine(PlaySound(SelectClip(painSounds), delay));
+        StartCoroutine(PlaySound(SelectClip(PlayerAudioContainer.instance.painSounds), delay));
     }
 
     public void PlayDeathSound()
     {
-        StartCoroutine(PlaySound(SelectClip(deathSounds)));
+        StartCoroutine(PlaySound(SelectClip(PlayerAudioContainer.instance.deathSounds)));
     }
 
     private IEnumerator PlaySound(AudioClip clip, float delay = 0f)

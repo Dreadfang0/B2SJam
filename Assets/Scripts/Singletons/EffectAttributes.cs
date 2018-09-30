@@ -174,8 +174,10 @@ public class EffectAttributes : MonoBehaviour
     [System.Serializable]
     public class PayWallAttributes
     {
-        public float visibleFor;
         public float fadeRate;
+
+        public float minDuration;
+        public float maxDuration;
 
         public GameObject prefab;
 

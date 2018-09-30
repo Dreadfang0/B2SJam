@@ -22,6 +22,8 @@ public class PayWallEffect : Effect
 
         attr.sound.Play();
 
+        player.Frozen = player.FindOpponent().Frozen = true;
+
         var obj = GameObject.Instantiate(attr.prefab, player.transform);
         var text = obj.GetComponent<TextMesh>();
 
@@ -31,7 +33,12 @@ public class PayWallEffect : Effect
             yield return null;
         }
 
-        yield return new WaitForSeconds(attr.visibleFor);
+        var min = attr.minDuration;
+        var max = attr.maxDuration;
+
+        yield return new WaitForSeconds(min + (max - min) * EffectState.instance.CurrentIntensity);
+
+        player.Frozen = player.FindOpponent().Frozen = false;
 
         for (var color = text.color; color.a > 0f; color.a -= attr.fadeRate)
         {
